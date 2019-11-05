@@ -9,11 +9,11 @@ const pages = [
     },
     {
         title: 'Users',
-        href: '#'
+        href: 'users'
     },
     {
         title: 'Beatmaps',
-        href: '#'
+        href: 'beatmaps'
     },
     {
         title: 'Manage',

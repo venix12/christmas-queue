@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'BeatmapController@index');
+
+Route::get('/users', function() {
+    return view('users');
+});
+
+Route::get('/beatmaps', 'BeatmapController@beatmaps')->name('beatmaps');
 
 Route::get('/test', 'TestController@test_user')->name('test_user');
 

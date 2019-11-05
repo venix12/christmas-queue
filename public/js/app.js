@@ -52908,10 +52908,10 @@ var pages = [{
   href: '/christmas-queue/public'
 }, {
   title: 'Users',
-  href: '#'
+  href: 'users'
 }, {
   title: 'Beatmaps',
-  href: '#'
+  href: 'beatmaps'
 }, {
   title: 'Manage',
   href: 'admin-beatmaps'

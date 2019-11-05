@@ -27,6 +27,11 @@ class ManageBeatmapsController extends Controller
 
     public function index()
     {
+        if(!Auth::check() || !Auth::user()->isAmbassador())
+        {
+            return redirect('/');
+        }
+
         $beatmapsDeleted = mapset::where('deleted', 1)->get();
         $beatmapsNotApproved = Mapset::where('deleted', 0)->where('approved', 0)->get();
 

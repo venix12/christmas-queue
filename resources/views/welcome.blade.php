@@ -20,16 +20,9 @@
         @endif
     @endguest
 
-    <hr width="30%">
-
-    <h2>Beatmaps</h2>
-
     <!-- React -->
-    <div id="user-listing" data='{!! json_encode(App\User::sorted()) !!}'></div>
-
-    @auth
-        <div id="beatmap-form"></div>
-    @endauth
-
-    <div id="beatmap-listing" data='{!! json_encode($beatmaps) !!}'></div>
+    <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}'></div>
+    <a class="nav-badge" href={{ route('beatmaps') }}>
+        <i class="fa fa-chevron-down"></i> Show more <i class="fa fa-chevron-down"></i>
+    </a>
 @endsection

@@ -7,11 +7,11 @@
     Beatmaps waiting for approval ({{ count($beatmapsNotApproved) }})
 
     <!-- React -->
-    <div id="beatmap-listing" data='{!! json_encode($beatmapsNotApproved) !!}'></div>
+    <div id="beatmap-listing" data='{{ json_encode($beatmapsNotApproved) }}'></div>
 
     <hr width="30%">
     Deleted beatmaps ({{count($beatmapsDeleted)}})
 
     <!-- React -->
-    <div id="beatmap-listing2" data='{!! json_encode($beatmapsDeleted) !!}'></div>
+    <div id="beatmap-listing2" data='{{ json_encode($beatmapsDeleted) }}'></div>
 @endsection

@@ -197,6 +197,7 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     padding-right: 0.5em;
     text-align: center;
     margin: 0;
+    border: none;
 }
 
 a.nav-badge:hover, a.nav-badge:focus {
