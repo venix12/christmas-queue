@@ -10,8 +10,12 @@ class BeatmapController extends Controller
     public function index() {
         $beatmaps = Mapset::where('approved', 1)
             ->where('deleted', 0)
-            ->get()
-            ->random(8);
+            ->get();
+
+        if (count($beatmaps) >= 8)
+        {
+            $beatmaps = $beatmaps->random(8);
+        }
 
         return view('welcome')
             ->with('beatmaps', $beatmaps);
