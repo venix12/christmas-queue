@@ -101,6 +101,10 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     color: greenyellow;
 }
 
+.color-gray {
+    color: #9c9c9c;
+}
+
 .color-Modder {
     color: #5c5c5c;
 }
@@ -112,6 +116,7 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     display: inline-block;
     padding: 0.5em;
     text-align: center;
+    margin-top: 10px;
 }
 
 .icon-green {
@@ -129,7 +134,8 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     margin-left: 5px;
     margin-right: 5px;
     outline: none;
-    width: 130px;
+    width: 320px;
+    font-size: 0.8rem;
 }
 
 .modal__backdrop {

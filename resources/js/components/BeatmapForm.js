@@ -14,17 +14,44 @@ export default class BeatmapForm extends Component {
         status: '',
     }
 
-    changeHandler = (e) => {
-        if(!isNaN(e.target.value)) {
-            this.setState({
-                [e.target.name]: e.target.value
-            });
+    beatmapParse = (url) => {
+        let split;
+
+        if(url.includes('/beatmapsets/')) {
+            const a = url.split('/beatmapsets/');
+            split = a[1].split('#');
+            return split[0];
+        } else if(url.inlcudes('/s/')) {
+            split = url.split('/s/');
+            return split[1];
         }
     }
 
-    submitHandler = (e) => {
+    changeHandler = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    submitHandler = async (e) => {
         e.preventDefault();
-        const { beatmapsetId } = this.state;
+        let { beatmapsetId } = this.state;
+
+        try {
+            var parser = await this.beatmapParse(beatmapsetId);
+        } catch (err) {
+            const status = 'error';
+            const message = 'Seems like the URL format is wrong...';
+
+            this.setState({
+                message: message,
+                status: status
+            })
+
+            return 0;
+        }
+
+        beatmapsetId = parser;
 
         osuApi('beatmap', beatmapsetId)
             .then(response => {
@@ -35,24 +62,21 @@ export default class BeatmapForm extends Component {
                     status = 'error';
                     message = 'Beatmapset not found... Make sure you put correct beatamapset ID!';
                     this.setState({
-                        beatmapsetArtist: '',
-                        beatmapsetCreator: '',
                         beatmapsetId: '',
-                        beatmapsetTitle: '',
                         message: message,
-                        osuUserId: '',
                         status: status,
                     });
                 }
 
-                this.setState({
+                const data = {
                     beatmapsetArtist: response.artist,
                     beatmapsetCreator: response.creator,
+                    beatmapsetId: beatmapsetId,
                     beatmapsetTitle: response.title,
                     osuUserId: response.creator_id,
-                });
+                }
 
-                axios.post('/christmas-queue/public/beatmaps', this.state)
+                axios.post('/christmas-queue/public/beatmaps', data)
                     .then(res => {
                         if(typeof(res.data.error) !== 'undefined') {
                             status = 'error';
@@ -63,12 +87,8 @@ export default class BeatmapForm extends Component {
                         }
 
                         this.setState({
-                            beatmapsetArtist: '',
-                            beatmapsetCreator: '',
                             beatmapsetId: '',
-                            beatmapsetTitle: '',
                             message: message,
-                            osuUserId: '',
                             status: status,
                         });
 
@@ -78,6 +98,7 @@ export default class BeatmapForm extends Component {
                         message = 'Seems like something went wrong...';
 
                         this.setState({
+                            beatmapsetId: '',
                             message: message,
                             status: status,
                         });
@@ -103,6 +124,8 @@ export default class BeatmapForm extends Component {
                         <button class="button bg-orange" type="submit"><i class="fa fa-check"></i> Request!</button>
                     </form>
                 </div>
+                <br />
+                <small class="color-gray">please put <b>beatmapset</b> URL here</small>
                 <br />
                 {status && <Status
                     message={message}
