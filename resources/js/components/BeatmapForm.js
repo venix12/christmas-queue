@@ -50,12 +50,17 @@ export default class BeatmapForm extends Component {
                     beatmapsetCreator: response.creator,
                     beatmapsetTitle: response.title,
                     osuUserId: response.creator_id,
-                })
+                });
 
                 axios.post('/christmas-queue/public/beatmaps', this.state)
                     .then(res => {
-                        status = 'success';
-                        message = 'Your beatmap has been sent for approval!';
+                        if(typeof(res.data.error) !== 'undefined') {
+                            status = 'error';
+                            message = res.data.error;
+                        } else {
+                            status = 'success';
+                            message = 'Your beatmap has been sent for approval!';
+                        }
 
                         this.setState({
                             beatmapsetArtist: '',
