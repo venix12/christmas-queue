@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './Modal';
-import { getMods, getNominators } from '../helpers/RestApi';
+import { getMods, getNominators, currentUser } from '../helpers/RestApi';
 import Status from './Status';
 
 class BeatmapCard extends Component {
@@ -19,10 +19,12 @@ class BeatmapCard extends Component {
             trigger: 'hover'
         });
 
-        const mods = await getMods(this.state.id);
-        const nominators = await getNominators(this.state.id);
-        const nominated = Boolean(nominators.find(x => x.user.id === this.props.currentUser.id));
-        const voted = Boolean(mods.find(x => x.user.id === this.props.currentUser.id));
+        const { currentUser, id } = this.props;
+
+        const mods = await getMods(id);
+        const nominators = await getNominators(id);
+        const nominated = Boolean(nominators.find(x => x.user.id === currentUser.id));
+        const voted = Boolean(mods.find(x => x.user.id === currentUser.id));
 
         this.setState({
             mods: mods,
@@ -97,7 +99,6 @@ class BeatmapCard extends Component {
     modal = () => {
         const { beatmap_id, creator, currentUser, metadata } = this.props;
         const { mods, nominators, nominated, voted } = this.state;
-        console.log(nominated);
         return (
             <Modal
                 onClose={this.closeModal}

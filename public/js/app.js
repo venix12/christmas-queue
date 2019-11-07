@@ -52297,7 +52297,6 @@ function (_Component) {
           nominators = _this$state.nominators,
           nominated = _this$state.nominated,
           voted = _this$state.voted;
-      console.log(nominated);
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
         onClose: _this.closeModal,
         bgImg: "https://assets.ppy.sh/beatmaps/".concat(beatmap_id, "/covers/cover.jpg"),
@@ -52354,9 +52353,8 @@ function (_Component) {
       var _componentDidMount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this2 = this;
+        var _this$props2, currentUser, id, mods, nominators, nominated, voted;
 
-        var mods, nominators, nominated, voted;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -52364,21 +52362,22 @@ function (_Component) {
                 $('[data-toggle="tooltip"]').tooltip({
                   trigger: 'hover'
                 });
-                _context.next = 3;
-                return Object(_helpers_RestApi__WEBPACK_IMPORTED_MODULE_3__["getMods"])(this.state.id);
+                _this$props2 = this.props, currentUser = _this$props2.currentUser, id = _this$props2.id;
+                _context.next = 4;
+                return Object(_helpers_RestApi__WEBPACK_IMPORTED_MODULE_3__["getMods"])(id);
 
-              case 3:
+              case 4:
                 mods = _context.sent;
-                _context.next = 6;
-                return Object(_helpers_RestApi__WEBPACK_IMPORTED_MODULE_3__["getNominators"])(this.state.id);
+                _context.next = 7;
+                return Object(_helpers_RestApi__WEBPACK_IMPORTED_MODULE_3__["getNominators"])(id);
 
-              case 6:
+              case 7:
                 nominators = _context.sent;
                 nominated = Boolean(nominators.find(function (x) {
-                  return x.user.id === _this2.props.currentUser.id;
+                  return x.user.id === currentUser.id;
                 }));
                 voted = Boolean(mods.find(function (x) {
-                  return x.user.id === _this2.props.currentUser.id;
+                  return x.user.id === currentUser.id;
                 }));
                 this.setState({
                   mods: mods,
@@ -52387,7 +52386,7 @@ function (_Component) {
                   voted: voted
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -52404,11 +52403,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          currentUser = _this$props2.currentUser,
-          creator = _this$props2.creator,
-          beatmap_id = _this$props2.beatmap_id,
-          metadata = _this$props2.metadata;
+      var _this$props3 = this.props,
+          currentUser = _this$props3.currentUser,
+          creator = _this$props3.creator,
+          beatmap_id = _this$props3.beatmap_id,
+          metadata = _this$props3.metadata;
       var _this$state2 = this.state,
           approved = _this$state2.approved,
           deleted = _this$state2.deleted;
