@@ -6,11 +6,8 @@ import Status from './Status';
 
 export default class BeatmapForm extends Component {
     state = {
-        beatmapsetArtist: '',
         beatmapsetId: '',
-        beatmapsetTitle: '',
         message: '',
-        osuUserId: '',
         status: '',
     }
 
