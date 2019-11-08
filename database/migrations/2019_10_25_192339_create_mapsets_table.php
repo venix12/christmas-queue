@@ -23,6 +23,10 @@ class CreateMapsetsTable extends Migration
             $table->bigInteger('beatmapset_osu_id');
             $table->boolean('approved')->default(0);
             $table->boolean('deleted')->default(0);
+            $table->boolean('osu')->default(0);
+            $table->boolean('taiko')->default(0);
+            $table->boolean('mania')->default(0);
+            $table->boolean('catch')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

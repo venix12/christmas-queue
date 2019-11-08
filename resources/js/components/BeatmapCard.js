@@ -152,7 +152,7 @@ class BeatmapCard extends Component {
     }
 
     render() {
-        const { currentUser, creator, beatmap_id, metadata } = this.props;
+        const { currentUser, creator, beatmap_id, metadata, modes } = this.props;
         const { approved, deleted } = this.state;
         return (
             <React.Fragment>
@@ -166,7 +166,7 @@ class BeatmapCard extends Component {
                 >
                     <div class="beatmap-badge round-text">
                         {metadata} <br />
-                        <small>mapped by {creator}</small>
+                        <small>mapped by {creator}</small> <br />
                     </div> <br />
                     <div>
                         <div class="float-left">
@@ -178,6 +178,12 @@ class BeatmapCard extends Component {
                                 title="Details">
                                 <i class="fa fa-navicon"></i>
                             </button>
+
+                            <div class="mode-listing">
+                                {modes.map(mode => {
+                                    return <span key={mode.name}>{mode.bool && <span>{mode.name} </span>}</span>
+                                })}
+                            </div>
                         </div>
                         <div class="float-right">
                             {(deleted == false && (currentUser.isAmbassador && approved == false)) &&

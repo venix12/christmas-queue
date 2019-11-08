@@ -65,16 +65,27 @@ export default class BeatmapForm extends Component {
                     });
                 }
 
+                const modes = ['osu', 'taiko', 'catch', 'mania'];
+
+                const modesInclude=[];
+                response.forEach(beatmap => {
+                    if(!modesInclude.includes(modes[beatmap.mode])) {
+                        modesInclude.push(modes[beatmap.mode]);
+                    }
+                });
+
                 const data = {
-                    beatmapsetArtist: response.artist,
-                    beatmapsetCreator: response.creator,
+                    beatmapsetArtist: response[0].artist,
+                    beatmapsetCreator: response[0].creator,
                     beatmapsetId: beatmapsetId,
-                    beatmapsetTitle: response.title,
-                    osuUserId: response.creator_id,
+                    beatmapsetTitle: response[0].title,
+                    osuUserId: response[0].creator_id,
+                    modes: modesInclude
                 }
 
                 axios.post('/christmas-queue/public/beatmaps', data)
                     .then(res => {
+
                         if(typeof(res.data.error) !== 'undefined') {
                             status = 'error';
                             message = res.data.error;

@@ -33,6 +33,10 @@ class BeatmapsetController extends Controller
                     'beatmapset_creator' => $request->beatmapsetCreator,
                     'beatmapset_osu_id' => $request->beatmapsetId,
                     'beatmapset_title' => $request->beatmapsetTitle,
+                    'osu' => in_array('osu', $request->modes) ? true : false,
+                    'taiko' => in_array('taiko', $request->modes) ? true : false,
+                    'catch' => in_array('catch', $request->modes) ? true : false,
+                    'mania' => in_array('mania', $request->modes) ? true : false
                 ]);
             } else {
                 $mapset = ['error' => 'This beatmap was already refused!'];

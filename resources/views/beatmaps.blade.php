@@ -9,5 +9,5 @@
     <div id="beatmap-form"></div>
     @endauth
 
-    <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}'></div>
+    <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}' filters="true"></div>
 @endsection

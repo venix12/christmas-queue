@@ -17,7 +17,7 @@ export async function osuApi(type, id) {
     try {
         const response = await fetch(api);
         const data = await response.json();
-        return data[0];
+        return data;
     } catch(err) {
         console.log(err);
     }

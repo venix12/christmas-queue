@@ -127,13 +127,16 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     color: chocolate;
 }
 
-.input-invisible {
+.input-invisible, .el-invisible {
     background: transparent;
     border: none;
     color: #9c9c9c;
+    outline: none !important;
+}
+
+.input-invisible {
     margin-left: 5px;
     margin-right: 5px;
-    outline: none;
     width: 320px;
     font-size: 0.8rem;
 }
@@ -180,6 +183,18 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     justify-content: space-between;
 }
 
+.mode-listing {
+    background-color: black;
+    border-radius: 50px;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0.5em;
+    font-size: 0.8rem;
+    color: #9c9c9c;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .nav-bg {
     background-color: black;
     border-radius: 50px;
@@ -197,7 +212,7 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
 .nav-badge {
     background-color: white;
     border-radius: 50px;
-    color: black;
+    color: black !important;
     display: inline-block;
     padding-left: 0.5em;
     padding-right: 0.5em;
