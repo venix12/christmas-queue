@@ -50,69 +50,65 @@ export default class BeatmapForm extends Component {
 
         beatmapsetId = parser;
 
-        osuApi('beatmap', beatmapsetId)
-            .then(response => {
-                let message;
-                let status;
+        const response = await osuApi('beatmap', beatmapsetId);
 
-                if(typeof(response) === 'undefined') {
-                    status = 'error';
-                    message = 'Beatmapset not found... Make sure you put correct beatamapset ID!';
-                    this.setState({
-                        beatmapsetId: '',
-                        message: message,
-                        status: status,
-                    });
-                }
+        let message;
+        let status;
 
-                const modes = ['osu', 'taiko', 'catch', 'mania'];
+        if(typeof(response) === 'undefined') {
+            status = 'error';
+            message = 'Beatmapset not found... Make sure you put correct beatamapset ID!';
+            this.setState({
+                beatmapsetId: '',
+                message: message,
+                status: status,
+            });
+        }
 
-                const modesInclude=[];
-                response.forEach(beatmap => {
-                    if(!modesInclude.includes(modes[beatmap.mode])) {
-                        modesInclude.push(modes[beatmap.mode]);
-                    }
-                });
+        const modes = ['osu', 'taiko', 'catch', 'mania'];
 
-                const data = {
-                    beatmapsetArtist: response[0].artist,
-                    beatmapsetCreator: response[0].creator,
-                    beatmapsetId: beatmapsetId,
-                    beatmapsetTitle: response[0].title,
-                    osuUserId: response[0].creator_id,
-                    modes: modesInclude
-                }
-
-                axios.post('/christmas-queue/public/beatmaps', data)
-                    .then(res => {
-
-                        if(typeof(res.data.error) !== 'undefined') {
-                            status = 'error';
-                            message = res.data.error;
-                        } else {
-                            status = 'success';
-                            message = 'Your beatmap has been sent for approval!';
-                        }
-
-                        this.setState({
-                            beatmapsetId: '',
-                            message: message,
-                            status: status,
-                        });
-
-                    })
-                    .catch(err => {
-                        status = 'error';
-                        message = 'Seems like something went wrong...';
-
-                        this.setState({
-                            beatmapsetId: '',
-                            message: message,
-                            status: status,
-                        });
-                    });
+        const modesInclude=[];
+        response.forEach(beatmap => {
+            if(!modesInclude.includes(modes[beatmap.mode])) {
+                modesInclude.push(modes[beatmap.mode]);
             }
-        );
+        });
+
+        const data = {
+            beatmapsetArtist: response[0].artist,
+            beatmapsetCreator: response[0].creator,
+            beatmapsetId: beatmapsetId,
+            beatmapsetTitle: response[0].title,
+            osuUserId: response[0].creator_id,
+            modes: modesInclude
+        }
+
+        const res = await axios.post('/christmas-queue/public/beatmaps', data);
+        try {
+            if(typeof(res.data.error) !== 'undefined') {
+                status = 'error';
+                message = res.data.error;
+            } else {
+                status = 'success';
+                message = 'Your beatmap has been sent for approval!';
+            }
+
+            this.setState({
+                beatmapsetId: '',
+                message: message,
+                status: status,
+            });
+
+        } catch(err) {
+            status = 'error';
+            message = 'Seems like something went wrong...';
+
+            this.setState({
+                beatmapsetId: '',
+                message: message,
+                status: status,
+            });
+        }
     }
 
     render() {

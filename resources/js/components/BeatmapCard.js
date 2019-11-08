@@ -43,26 +43,24 @@ class BeatmapCard extends Component {
         });
     }
 
-    becomeModder = (a) => {
+    becomeModder = async(a) => {
         const { id } = this.props;
 
-        axios.post('beatmaps/add-modder', { beatmap_id: id, type: a })
-            .then(response => {
-                if(response.data === 'error') {
-                    return 0;
-                }
-                if(response.data[0].type === 0) {
-                    this.setState(prevState => ({
-                        mods: prevState.mods.concat(response.data),
-                        voted: true
-                    }));
-                } else {
-                    this.setState(prevState => ({
-                        nominators: prevState.nominators.concat(response.data),
-                        nominated: true
-                    }))
-                }
-            });
+        const response = await axios.post('beatmaps/add-modder', { beatmap_id: id, type: a });
+
+        if(response.data === 'error') {
+            return 0;
+        } else if(response.data[0].type === 0) {
+            this.setState(prevState => ({
+                mods: prevState.mods.concat(response.data),
+                voted: true
+            }));
+        } else {
+            this.setState(prevState => ({
+                nominators: prevState.nominators.concat(response.data),
+                nominated: true
+            }))
+        }
     }
 
     openModal = () => {
