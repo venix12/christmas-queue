@@ -9,7 +9,7 @@ class User extends Authenticatable
     protected $casts = [
         'isAmbassador' => 'boolean',
         'isNominator' => 'boolean',
-        'isModder' => 'boolean',
+        'isModder' => 'boolean'
     ];
 
     public static function sorted() {
@@ -17,7 +17,7 @@ class User extends Authenticatable
 
         $sorts = [
             'isAmbassador',
-            'isModder',
+            'isModder'
         ];
 
 

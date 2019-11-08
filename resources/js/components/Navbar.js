@@ -19,7 +19,7 @@ const pages = [
         title: 'Manage',
         href: 'admin-beatmaps'
     }
-]
+];
 
 export default class Navbar extends Component {
     render() {
