@@ -11,7 +11,7 @@ class BeatmapCard extends Component {
         mods: [],
         nominators: [],
         nominated: true,
-        voted: true
+        modded: true
     }
 
     async componentDidMount() {
@@ -24,13 +24,13 @@ class BeatmapCard extends Component {
         const mods = await getMods(id);
         const nominators = await getNominators(id);
         const nominated = Boolean(nominators.find(x => x.user.id === currentUser.id));
-        const voted = Boolean(mods.find(x => x.user.id === currentUser.id));
+        const modded = Boolean(mods.find(x => x.user.id === currentUser.id));
 
         this.setState({
             mods: mods,
             nominators: nominators,
             nominated: nominated,
-            voted: voted
+            modded: modded
         });
     }
 
@@ -43,23 +43,26 @@ class BeatmapCard extends Component {
         });
     }
 
-    becomeModder = async(a) => {
+    becomeModder = async (type) => {
         const { id } = this.props;
 
-        const response = await axios.post('beatmaps/add-modder', { beatmap_id: id, type: a });
+        const response = await axios.post('beatmaps/add-modder', { beatmap_id: id, type: type });
+        const mod = response.data[0].type === 0;
+
+        console.log(response.data)
 
         if(response.data === 'error') {
             return 0;
-        } else if(response.data[0].type === 0) {
+        } else if(mod) {
             this.setState(prevState => ({
                 mods: prevState.mods.concat(response.data),
-                voted: true
+                modded: true
             }));
         } else {
             this.setState(prevState => ({
                 nominators: prevState.nominators.concat(response.data),
                 nominated: true
-            }))
+            }));
         }
     }
 
@@ -84,6 +87,31 @@ class BeatmapCard extends Component {
         });
     }
 
+    removeModder = async (type) => {
+        const { id } = this.props;
+        const { mods, nominators } = this.state;
+
+        const response = await axios.post('beatmaps/remove-modder', { beatmap_id: id, type: type });
+        const mod = response.data.type === 0
+
+        console.log(mods);
+        console.log(response);
+
+        if(response.data === 'error') {
+            return 0;
+        } else if(mod) {
+            this.setState({
+                mods: mods.filter(x => x.id !== response.data.id),
+                modded: false
+            });
+        } else {
+            this.setState({
+                nominators: nominators.filter(x => x.id !== response.id),
+                nominated: false
+            })
+        }
+    }
+
     restoreBeatmap = () => {
         const { id } = this.props;
         axios.post('beatmap-restore', { beatmap_id: id });
@@ -96,7 +124,7 @@ class BeatmapCard extends Component {
 
     modal = () => {
         const { beatmap_id, creator, currentUser, metadata } = this.props;
-        const { mods, nominators, nominated, voted } = this.state;
+        const { mods, nominators, nominated, modded } = this.state;
         return (
             <Modal
                 onClose={this.closeModal}
@@ -120,7 +148,7 @@ class BeatmapCard extends Component {
 
                 <br />
 
-                {(currentUser.isModder && !voted) &&
+                {(currentUser.isModder && !modded) &&
                     <div>
                         <button class="button bg-green" onClick={ () => this.becomeModder(0) }>
                             <i class="fa fa-plus"></i> Mark yourself as a modder
@@ -129,9 +157,9 @@ class BeatmapCard extends Component {
                     </div>
                 }
 
-                {(currentUser.isModder && voted) &&
+                {(currentUser.isModder && modded) &&
                     <div>
-                        <button class="button bg-orange">
+                        <button class="button bg-orange" onClick={ () => this.removeModder(0)}>
                             <i class="fa fa-minus"></i> Remove yourself from modders
                         </button>
                         <br /> <br />
@@ -139,7 +167,7 @@ class BeatmapCard extends Component {
                 }
 
                 {(currentUser.isNominator && !nominated) && <button class="button bg-pink" onClick={ () => this.becomeModder(1) }><i class="fa fa-plus"></i> Mark yourself as a potential nominator</button>}
-                {(currentUser.isNominator && nominated) && <button class="button bg-orange"><i class="fa fa-minus"></i> Remove yourself from potential nominators</button>}
+                {(currentUser.isNominator && nominated) && <button class="button bg-orange" onClick={ () => this.removeModder(1) }><i class="fa fa-minus"></i> Remove yourself from potential nominators</button>}
                 {!currentUser.id &&
                     <div className="text-center">
                         <Status status="error" message="You have to be logged in to perform actions!" />

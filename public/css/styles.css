@@ -154,7 +154,6 @@ a.bg-red:hover, a.bg-red:focus, button.bg-red:hover, button.bg-red:focus {
     position: fixed;
         width: 90%;
     max-height: 25rem;
-    /* background-color: black; */
     background-color: #1b1b1b;
     box-shadow: 0 2px 8px black;
     top: 9vh;

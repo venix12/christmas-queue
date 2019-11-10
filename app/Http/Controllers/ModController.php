@@ -32,4 +32,22 @@ class ModController extends Controller
             return response()->json($response);
         }
     }
+
+    public function remove(Request $request)
+    {
+        $userMod = Mod::where('mapset_id', $request->beatmap_id)
+            ->where('type', $request->type)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if($userMod !== null)
+        {
+            $response = $userMod;
+            $userMod->delete();
+        } else {
+            $response = 'error';
+        }
+
+        return response()->json($response);
+    }
 }

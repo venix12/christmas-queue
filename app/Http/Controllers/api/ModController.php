@@ -39,7 +39,7 @@ class ModController extends Controller
     {
         $mods = Mod::with(['User' => function($query){
             $query->select('id', 'username');
-        }])->where('mapset_id', $id)->where('type', 0)->get();
+        }])->where('mapset_id', $id)->where('type', 1)->get();
 
         return response()->json($mods);
     }

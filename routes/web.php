@@ -37,6 +37,7 @@ Route::group(['namespace' => 'admin'], function() {
 Route::group(['prefix' => 'beatmaps'], function() {
     Route::post('/', 'BeatmapsetController@store');
     Route::post('/add-modder', 'ModController@store');
+    Route::post('/remove-modder', 'ModController@remove');
 });
 
 //API
