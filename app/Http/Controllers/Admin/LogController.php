@@ -11,6 +11,11 @@ class LogController extends Controller
 {
     public function index()
     {
+        if(!Auth::check() || !Auth::user()->isAmbassador)
+        {
+            return redirect('/');
+        }
+
         $events = Event::with('User')->get();
 
         return view('admin.log')
