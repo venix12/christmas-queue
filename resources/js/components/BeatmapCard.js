@@ -49,8 +49,6 @@ class BeatmapCard extends Component {
         const response = await axios.post('beatmaps/add-modder', { beatmap_id: id, type: type });
         const mod = response.data[0].type === 0;
 
-        console.log(response.data)
-
         if(response.data === 'error') {
             return 0;
         } else if(mod) {
@@ -92,10 +90,7 @@ class BeatmapCard extends Component {
         const { mods, nominators } = this.state;
 
         const response = await axios.post('beatmaps/remove-modder', { beatmap_id: id, type: type });
-        const mod = response.data.type === 0
-
-        console.log(mods);
-        console.log(response);
+        const mod = response.data.type === 0;
 
         if(response.data === 'error') {
             return 0;
@@ -106,7 +101,7 @@ class BeatmapCard extends Component {
             });
         } else {
             this.setState({
-                nominators: nominators.filter(x => x.id !== response.id),
+                nominators: nominators.filter(x => x.id !== response.data.id),
                 nominated: false
             })
         }

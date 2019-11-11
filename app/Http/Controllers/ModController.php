@@ -23,9 +23,9 @@ class ModController extends Controller
                 'user_id' => Auth::id(),
             ]);
 
-            $mod = [$createMod, 'user' => ['id' => Auth::user()->id, 'username' => Auth::user()->username]];
+            $response = Mod::with('User')->where('id', $createMod->id)->get();
 
-            return response()->json($mod);
+            return response()->json($response);
         } else {
             $response = 'error';
 
