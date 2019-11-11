@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Auth;
+use App\Event;
 use App\Http\Controllers\Controller;
 use App\Mapset;
+use Auth;
 use Illuminate\Http\Request;
 
 class ManageBeatmapsController extends Controller
@@ -23,6 +24,8 @@ class ManageBeatmapsController extends Controller
         $beatmap->approved = false;
         $beatmap->deleted = true;
         $beatmap->save();
+
+        Event::log('Refused beatmap '.$beatmap->beatmapset_artist.' - '.$beatmap->beatmapset_title);
     }
 
     public function index()
@@ -46,5 +49,7 @@ class ManageBeatmapsController extends Controller
         $beatmap->approved = true;
         $beatmap->deleted = false;
         $beatmap->save();
+
+        Event::log('Restored beatmap '.$beatmap->beatmapset_artist.' - '.$beatmap->beatmapset_title);
     }
 }

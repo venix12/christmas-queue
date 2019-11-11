@@ -29,6 +29,7 @@ Route::get('/logout', function() {
 Route::group(['namespace' => 'admin'], function() {
     Route::get('/admin-beatmaps', 'ManageBeatmapsController@index');
     Route::get('/admin-users', 'ManageUsersController@index');
+    Route::get('/log', 'LogController@index');
     Route::post('/add-usergroup', 'ManageUsersController@addUsergroup')->name('add_usergroup');
     Route::post('/beatmap-approve', 'ManageBeatmapsController@approve');
     Route::post('/beatmap-delete', 'ManageBeatmapsController@delete');
