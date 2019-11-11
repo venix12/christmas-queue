@@ -129,6 +129,7 @@ class BeatmapCard extends Component {
             <Modal
                 onClose={this.closeModal}
                 bgImg={`https://assets.ppy.sh/beatmaps/${beatmap_id}/covers/cover.jpg`}
+                link={`https://osu.ppy.sh/s/${beatmap_id}`}
                 title={metadata}
                 desc={`mapped by ${creator}`}>
 
@@ -190,10 +191,10 @@ class BeatmapCard extends Component {
                     backgroundImage: `url(https://assets.ppy.sh/beatmaps/${beatmap_id}/covers/cover.jpg)`
                 }}
                 >
-                    <div class="beatmap-badge round-text">
+                    <a class="beatmap-badge round-text" href={`https://osu.ppy.sh/s/${beatmap_id}`}>
                         {metadata} <br />
                         <small>mapped by {creator}</small> <br />
-                    </div> <br />
+                    </a> <br />
                     <div>
                         <div class="float-left">
                             <button
