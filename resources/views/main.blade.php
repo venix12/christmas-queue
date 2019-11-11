@@ -20,8 +20,14 @@
         <main class="py-4">
             <div class="container">
                 <div class="app text-center">
-                    <div id="navbar" current={{$title}}></div>
+                    <div id="navbar" current='{{$title}}'></div>
                     @yield('content')
+
+                    @auth
+                        @if(Auth::user()->isAmbassador())
+                            <div id="navbar-admin" current='{{$title}}' style="margin-top: 10px"></div>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </main>

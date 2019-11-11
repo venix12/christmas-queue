@@ -1,5 +1,5 @@
 @extends('main', [
-    'title' => 'Users'
+    'title' => 'Participants'
 ])
 
 @section('content')
