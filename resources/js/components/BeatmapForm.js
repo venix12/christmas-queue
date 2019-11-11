@@ -18,9 +18,11 @@ export default class BeatmapForm extends Component {
             const a = url.split('/beatmapsets/');
             split = a[1].split('#');
             return split[0];
-        } else if(url.inlcudes('/s/')) {
+        } else if(url.includes('/s/')) {
             split = url.split('/s/');
             return split[1];
+        } else if(url.includes('/b/')) {
+            return 'wrong_link';
         }
     }
 
@@ -36,6 +38,18 @@ export default class BeatmapForm extends Component {
 
         try {
             var parser = await this.beatmapParse(beatmapsetId);
+
+            if(parser === 'wrong_link') {
+                const status = 'error';
+                const message = '/b/ links are not supported, you should use the /s/ one instead!';
+
+                this.setState({
+                    message: message,
+                    status: status
+                })
+
+                return 0;
+            }
         } catch (err) {
             const status = 'error';
             const message = 'Seems like the URL format is wrong...';

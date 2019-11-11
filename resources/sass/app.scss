@@ -260,5 +260,6 @@ hr {
 
 .warning-badge {
     @include card;
+    color: $lightgray;
     margin-top: 10px;
 }
