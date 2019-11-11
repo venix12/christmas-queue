@@ -1,5 +1,5 @@
 @extends('main', [
-    'title' => 'Manage'
+    'title' => 'Manage Beatmaps'
 ])
 
 @section('content')
