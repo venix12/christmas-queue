@@ -14,10 +14,6 @@ const pages = [
     {
         title: 'Beatmaps',
         href: 'beatmaps'
-    },
-    {
-        title: 'Manage',
-        href: 'admin-beatmaps'
     }
 ];
 

@@ -1,7 +1,8 @@
-@extends('main')
+@extends('main', [
+    'title' => 'Beatmaps'
+])
 
 @section('content')
-    <div id="navbar" current='Beatmaps'></div>
     <h1 class="display-4">Beatmap Listing</h1>
 
     <!-- React -->

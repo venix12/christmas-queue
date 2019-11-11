@@ -1,4 +1,6 @@
-@extends('main')
+@extends('main', [
+    'title' => 'Home'
+])
 
 @section('content')
     <div id="navbar" current='Home'></div>

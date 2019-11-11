@@ -1,7 +1,8 @@
-@extends('main')
+@extends('main', [
+    'title' => 'Users'
+])
 
 @section('content')
-    <div id="navbar" current='Users'></div>
     <h1 class="display-4">Participants</h1>
 
     <!-- React -->
