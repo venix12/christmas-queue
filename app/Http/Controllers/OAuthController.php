@@ -70,7 +70,7 @@ class OauthController extends Controller
 
         if($user === null)
         {
-            $u = new User;
+            $u = new User();
             $u->osu_id = $osuUserId;
             $u->username = $username;
             if($isBNorNAT)
