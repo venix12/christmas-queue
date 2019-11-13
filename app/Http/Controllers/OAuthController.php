@@ -62,6 +62,6 @@ class OauthController extends Controller
 
         $userApi = json_decode((string) $userData->getBody(), true);
 
-        return $userApi;
+        return view('welcome');
     }
 }
