@@ -97,7 +97,7 @@ export default class BeatmapForm extends Component {
             modes: modesInclude
         }
 
-        const res = await axios.post('/christmas-queue/public/beatmaps', data);
+        const res = await axios.post('beatmaps', data);
         try {
             if(typeof(res.data.error) !== 'undefined') {
                 status = 'error';
