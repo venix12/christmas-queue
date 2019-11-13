@@ -19,8 +19,9 @@ Route::get('/users', function() {
 
 Route::get('/beatmaps', 'BeatmapController@beatmaps')->name('beatmaps');
 
-Route::get('/test', 'TestController@test_user')->name('test_user');
+//Route::get('/test', 'TestController@test_user')->name('login');
 
+Route::get('/login', 'OauthController@getToken')->name('login');
 Route::get('/logout', function() {
     Auth::logout(Auth::user());
     return redirect()->back();
@@ -51,3 +52,6 @@ Route::group(['namespace' => 'api', 'prefix' => 'api'], function() {
     Route::get('/nominators', 'ModController@nominatorsIndex');
     Route::get('/nominators/{id}', 'ModController@nominatorsShow');
 });
+
+//osu! OAuth
+Route::get('/callback', 'OauthController@getUserData');
