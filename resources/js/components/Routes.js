@@ -16,7 +16,7 @@ const adminPages = [
 const pages = [
     {
         title: 'Home',
-        href: '/christmas-queue/public'
+        href: '/'
     },
     {
         title: 'Beatmaps',
