@@ -6,6 +6,7 @@ use App\Event;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OauthController extends Controller
 {
