@@ -21,7 +21,7 @@ Route::get('/beatmaps', 'BeatmapController@beatmaps')->name('beatmaps');
 
 //Route::get('/test', 'TestController@test_user')->name('login');
 
-Route::get('/login', 'OauthController@getToken')->name('login');
+Route::get('/login', 'OAuthController@getToken')->name('login');
 Route::get('/logout', function() {
     Auth::logout(Auth::user());
     return redirect()->back();
