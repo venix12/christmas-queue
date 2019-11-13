@@ -7,7 +7,7 @@ class UserCard extends Component {
             <div class="user-card round-text text-left">
                 <img class="avatar float-left" src={`https://a.ppy.sh/${osu_id}`}></img>
                 {username}<br></br>
-                <span class={`color-${user_title.toLowerCase()}`}>{user_title}</span>
+                {user_title && <span class={`color-${user_title.toLowerCase()}`}>{user_title}</span>}
             </div>
         );
     }
