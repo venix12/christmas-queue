@@ -54,4 +54,4 @@ Route::group(['namespace' => 'api', 'prefix' => 'api'], function() {
 });
 
 //osu! OAuth
-Route::get('/callback', 'OauthController@getUserData');
+Route::get('/callback', 'OAuthController@getUserData');
