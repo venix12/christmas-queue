@@ -17,7 +17,7 @@ class OauthController extends Controller
 
         $query = http_build_query([
             'client_id' => env('CLIENT_ID'),
-            'redirect_uri' => 'https://christmas-queue.tk/callback',
+            'redirect_uri' => $redirect,
             'response_type' => 'code',
             'scope' => '',
             'state' => $state,
@@ -63,6 +63,6 @@ class OauthController extends Controller
 
         $userApi = json_decode((string) $userData->getBody(), true);
 
-        return $userApi;
+        return view('welcome');
     }
 }
