@@ -62,6 +62,26 @@ class OauthController extends Controller
 
         $userApi = json_decode((string) $userData->getBody(), true);
 
-        return $userApi;
+        $osuUserId = $userApi['id'];
+        $username = $userApi['username'];
+        $isBNorNAT = $userApi['is_bng'] === true || $userApi['is_nat'] === true;
+
+        $user = User::where('osu_id', $osuUserId)->first();
+
+        if($user === null)
+        {
+            $u = new User;
+            $u->osu_id = $osuUserId;
+            $u->username = $username;
+            if($isBNorNAT)
+            {
+                $u->isNominator = true;
+            }
+            $u->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
     }
 }
