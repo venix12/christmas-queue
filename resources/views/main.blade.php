@@ -25,12 +25,14 @@
 
                     @auth
                         @if(Auth::user()->isAmbassador())
-                            <div id="navbar-admin" current='{{$title}}' style="margin-top: 10px"></div>
+                            <div id="navbar-admin" current='{{$title}}' style="margin-top: 3px"></div>
                         @endif
                     @endauth
                 </div>
             </div>
         </main>
+
+        @include('components.footer')
 
         <script src="./js/app.js"></script>
     </body>
