@@ -16,6 +16,8 @@ class ManageBeatmapsController extends Controller
         $beatmap->approved = true;
         $beatmap->deleted = false;
         $beatmap->save();
+
+        Event::log('Approved beatmap '.$beatmap->beatmapset_artist.' - '.$beatmap->beatmapset_title);
     }
 
     public function delete(Request $request)
