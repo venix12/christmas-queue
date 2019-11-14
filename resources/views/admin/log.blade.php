@@ -8,12 +8,12 @@
 
     @include('components.session')
 
-    <table class="table table-borderless table-dark table-sm">
+    <table class="table table-dark table-sm text-left">
         <thead>
             <tr>
                 <th scope="col">User</th>
-                <th scope="col">Action</th>
                 <th scope="col">Date</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
 
@@ -21,8 +21,8 @@
             @foreach ($events as $event)
                 <tr style="font-size: 0.8rem">
                     <td>{{$event->user->username}}</td>
-                    <td>{{$event->action}}</td>
                     <td>{{$event->created_at}}</td>
+                    <td>{{$event->action}}</td>
                 </tr>
             @endforeach
         </tbody>
