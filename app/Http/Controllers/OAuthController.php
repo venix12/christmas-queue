@@ -64,7 +64,7 @@ class OauthController extends Controller
 
         $osuUserId = $userApi['id'];
         $username = $userApi['username'];
-        $isBNorNAT = $userApi['is_bng'] === true || $userApi['is_nat'] === true;
+        $isBnOrNat = $userApi['is_bng'] === true || $userApi['is_nat'] === true;
 
         $user = User::where('osu_id', $osuUserId)->first();
 
@@ -73,7 +73,7 @@ class OauthController extends Controller
             $u = new User();
             $u->osu_id = $osuUserId;
             $u->username = $username;
-            if($isBNorNAT)
+            if($isBnOrNat)
             {
                 $u->isNominator = true;
             }
