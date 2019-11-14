@@ -27,7 +27,7 @@ Route::get('/logout', function() {
     return redirect()->back();
 })->name('logout');
 
-Route::group(['namespace' => 'admin'], function() {
+Route::group(['namespace' => 'Admin'], function() {
     Route::get('/admin-beatmaps', 'ManageBeatmapsController@index');
     Route::get('/admin-users', 'ManageUsersController@index');
     Route::get('/log', 'LogController@index');
