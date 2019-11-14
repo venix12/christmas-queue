@@ -104,6 +104,13 @@ hr {
     &-green {
         background-color: greenyellow;
     }
+    &-login {
+        background-color: #ff70b8;
+
+        &:hover {
+            background-color: #ff4aa5;
+        }
+    }
     &-orange {
         background-color: chocolate;
     }
@@ -229,6 +236,7 @@ hr {
 .nav-el {
     margin-left: 0.5em;
     margin-right: 0.5em;
+    text-decoration: none !important;
 }
 
 .nav-badge {
@@ -241,11 +249,7 @@ hr {
     text-align: center;
     margin: 0;
     border: none;
-
-    a {
-        color: black;
-        text-decoration: none;
-    }
+    text-decoration: none !important;
 }
 
 .round-text {
@@ -258,6 +262,15 @@ hr {
     background-color: $darkgray;
     margin: auto;
     width: 80vh;
+}
+
+.text-field {
+    @include card;
+    background-color: rgba(0,0,0,.5);
+    border: 1px $lightblue solid;
+    color: $lightgray;
+    width: 80%;
+    margin: auto;
 }
 
 .text-lightblue {
