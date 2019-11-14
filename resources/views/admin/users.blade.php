@@ -26,7 +26,7 @@
         <tbody>
             @foreach ($users as $user)
                 <tr style="font-size: 0.8rem">
-                    <td>{{$user->username}}</td>
+                    <td><a href='https://osu.ppy.sh/u/{{$user->osu_id}}'>{{$user->username}}</a></td>
                     <td>{!! $user->isAmbassador ? $check : $mark !!}</td>
                     <td>{!! $user->isNominator ? $check : $mark !!}</td>
                     <td>{!! $user->isModder ? $check : $mark !!}</td>
