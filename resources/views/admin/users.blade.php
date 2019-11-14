@@ -26,7 +26,19 @@
         <tbody>
             @foreach ($users as $user)
                 <tr style="font-size: 0.8rem">
-                    <td><a href='https://osu.ppy.sh/u/{{$user->osu_id}}'>{{$user->username}}</a></td>
+                    <td>
+                        <a href='https://osu.ppy.sh/u/{{$user->osu_id}}'>
+                            {{$user->username}}
+                        </a>
+
+                        <form action={{ route('add_usergroup') }} method="POST" style="display: inline-block">
+                            @csrf
+
+                            <input type="hidden" name="group" value="0">
+                            <input type="hidden" name="username" value='{{$user->username}}'>
+                            <a href="#" onclick='this.parentNode.submit();'>(modder)</a>
+                        </form>
+                    </td>
                     <td>{!! $user->isAmbassador ? $check : $mark !!}</td>
                     <td>{!! $user->isNominator ? $check : $mark !!}</td>
                     <td>{!! $user->isModder ? $check : $mark !!}</td>
