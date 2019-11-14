@@ -78,6 +78,8 @@ class OauthController extends Controller
                 $u->isNominator = true;
             }
             $u->save();
+
+            return redirect('/login');
         }
 
         Auth::login($user);
