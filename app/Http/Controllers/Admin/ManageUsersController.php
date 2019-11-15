@@ -57,11 +57,6 @@ class ManageUsersController extends Controller
 
     public function index()
     {
-        if(!Auth::check() || !Auth::user()->isAmbassador())
-        {
-            return redirect('/');
-        }
-
         $users = User::sorted();
 
         return view('admin.users')
