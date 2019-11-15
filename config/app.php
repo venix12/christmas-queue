@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\GuzzleServiceProvider::class,
+        App\Providers\OsuApiServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Guzzle' => App\Facades\GuzzleFacade::class,
+        'OsuApi' => App\Facades\OsuApi::class,
 
     ],
 
