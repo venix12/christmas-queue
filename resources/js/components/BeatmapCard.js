@@ -201,7 +201,15 @@ class BeatmapCard extends Component {
                                 <i class="fa fa-navicon"></i>
                             </button>
 
-                            <div class="mode-listing">
+                            <div class="card-info card-info--modders">
+                                <span>{this.state.mods.length}</span>
+                            </div>
+
+                            <div class="card-info card-info--nominators">
+                                <span>{this.state.nominators.length}</span>
+                            </div>
+
+                            <div class="card-info card-info--modes">
                                 {modes.map(mode => {
                                     return <span key={mode.name}>{mode.bool && <span>{mode.name} </span>}</span>
                                 })}
