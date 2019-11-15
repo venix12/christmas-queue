@@ -55,4 +55,9 @@ class User extends Authenticatable
     public function mods() {
         return $this->hasMany('App\Mod');
     }
+
+    public function requestedMaps()
+    {
+        return $this->hasMany(Mapset::class);
+    }
 }
