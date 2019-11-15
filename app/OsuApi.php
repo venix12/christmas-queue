@@ -13,15 +13,15 @@ class OsuApi
         $this->apiKey = $apiKey;
     }
 
-    private function call(string $resource, array $query): mixed
+    private function call(string $resource, array $query)
     {
-        $query['k'] = $this->$apiKey;
-        $response = Guzzle::get('https://osu.ppy.sh/api/' + $resource, ['query' => $query]);
+        $query['k'] = $this->apiKey;
+        $response = Guzzle::get('https://osu.ppy.sh/api/' . $resource, ['query' => $query]);
 
         return json_decode($response->getBody());
     }
 
-    public function getBeatmapset(int $id): mixed
+    public function getBeatmapset(int $id)
     {
         return $this->call('get_beatmaps', ['s' => $id]);
     }

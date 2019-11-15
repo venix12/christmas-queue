@@ -230,7 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Guzzle' => App\Facades\GuzzleFacade::class,
-        'OsuApi' => App\Facades\OsuApi::class,
+        'OsuApi' => App\Facades\OsuApiFacade::class,
 
     ],
 
