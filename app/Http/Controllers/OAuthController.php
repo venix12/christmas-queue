@@ -16,7 +16,7 @@ class OauthController extends Controller
 
         $query = http_build_query([
             'client_id' => env('CLIENT_ID'),
-            'redirect_uri' => 'https://christmas-queue.tk/callback',
+            'redirect_uri' => route('oauth-callback'),
             'response_type' => 'code',
             'scope' => '',
             'state' => $state,
@@ -41,7 +41,7 @@ class OauthController extends Controller
                     'grant_type' => 'authorization_code',
                     'client_id' => env('CLIENT_ID'),
                     'client_secret' => env('CLIENT_SECRET'),
-                    'redirect_uri' => 'https://christmas-queue.tk/callback',
+                    'redirect_uri' => route('oauth-callback'),
                     'code' => $request->code,
                 ],
             ]);
