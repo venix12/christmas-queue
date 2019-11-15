@@ -195,17 +195,28 @@ class BeatmapCard extends Component {
                             <button
                                 onClick={this.openModal}
                                 class="button-circle bg-primary"
-                                data-placement="right"
+                                data-placement="bottom"
                                 data-toggle="tooltip"
-                                title="Details">
+                                title="Details"
+                            >
                                 <i class="fa fa-navicon"></i>
                             </button>
 
-                            <div class="card-info card-info--modders">
+                            <div
+                                class="card-info card-info--modders"
+                                title="Modders"
+                                data-placement="bottom"
+                                data-toggle="tooltip"
+                            >
                                 <span>{this.state.mods.length}</span>
                             </div>
 
-                            <div class="card-info card-info--nominators">
+                            <div
+                                class="card-info card-info--nominators"
+                                title="Potential nominators"
+                                data-placement="bottom"
+                                data-toggle="tooltip"
+                            >
                                 <span>{this.state.nominators.length}</span>
                             </div>
 
