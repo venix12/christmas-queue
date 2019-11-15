@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\User;
 use Auth;
+use Guzzle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -33,10 +34,8 @@ class OauthController extends Controller
             return redirect('/')->with('error', 'Seems like something went wrong...');
         }
 
-        $http = new \GuzzleHttp\Client;
-
         try {
-            $response = $http->post('http://osu.ppy.sh/oauth/token', [
+            $response = Guzzle::post('http://osu.ppy.sh/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
                     'client_id' => env('CLIENT_ID'),
@@ -53,7 +52,7 @@ class OauthController extends Controller
         $data = json_decode((string) $response->getBody(), true);
         $token = $data['access_token'];
 
-        $userData = $http->request('GET', 'https://osu.ppy.sh/api/v2/me', [
+        $userData = Guzzle::get('https://osu.ppy.sh/api/v2/me', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token,
