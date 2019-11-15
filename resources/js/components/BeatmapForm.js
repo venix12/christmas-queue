@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { osuApi } from '../helpers/OsuApi';
 import Status from './Status';
 
 export default class BeatmapForm extends Component {
@@ -64,37 +63,11 @@ export default class BeatmapForm extends Component {
 
         beatmapsetId = parser;
 
-        const response = await osuApi('beatmap', beatmapsetId);
-
         let message;
         let status;
 
-        if(typeof(response) === 'undefined') {
-            status = 'error';
-            message = 'Beatmapset not found... Make sure you put correct beatamapset ID!';
-            this.setState({
-                beatmapsetId: '',
-                message: message,
-                status: status,
-            });
-        }
-
-        const modes = ['osu', 'taiko', 'catch', 'mania'];
-
-        const modesInclude=[];
-        response.forEach(beatmap => {
-            if(!modesInclude.includes(modes[beatmap.mode])) {
-                modesInclude.push(modes[beatmap.mode]);
-            }
-        });
-
         const data = {
-            beatmapsetArtist: response[0].artist,
-            beatmapsetCreator: response[0].creator,
             beatmapsetId: beatmapsetId,
-            beatmapsetTitle: response[0].title,
-            osuUserId: response[0].creator_id,
-            modes: modesInclude
         }
 
         const res = await axios.post('beatmaps', data);
