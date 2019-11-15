@@ -10,6 +10,10 @@ const adminPages = [
     {
         title: 'Manage Users',
         href: 'admin-users'
+    },
+    {
+        title: 'Forum Post Template',
+        href: 'forum-export'
     }
 ]
 

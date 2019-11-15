@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mapset extends Model
 {
+    const MODES = ['osu', 'taiko', 'catch', 'mania'];
+    const RANKED_STATUSES = [
+        -2 => 'graveyard',
+        -1 => 'wip',
+        0 => 'pending',
+        1 => 'ranked',
+        2 => 'approved',
+        3 => 'qualified',
+        4 => 'loved',
+    ];
+
     protected $casts = [
         'catch' => 'boolean',
         'mania' => 'boolean',

@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::post('/beatmap-approve', 'ManageBeatmapsController@approve');
     Route::post('/beatmap-delete', 'ManageBeatmapsController@delete');
     Route::post('/beatmap-restore', 'ManageBeatmapsController@restore');
+    Route::get('/forum-export', 'ManageBeatmapsController@forumExport');
 });
 
 
