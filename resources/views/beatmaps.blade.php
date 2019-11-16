@@ -12,6 +12,11 @@
             'warning' => 'You have to be logged in to request modding!'
         ])
     @else
+        @include('components.warning-badge', [
+            'icon' => 'warning',
+            'warning' => 'Please, request <b>finished</b> beatmaps <b>only</b>!'
+        ])
+
         <div id="beatmap-form"></div>
     @endguest
 
