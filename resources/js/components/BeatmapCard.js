@@ -220,7 +220,12 @@ class BeatmapCard extends Component {
                                 <span>{this.state.nominators.length}</span>
                             </div>
 
-                            <div class="card-info card-info--modes">
+                            <div
+                                class="card-info card-info--modes"
+                                title="Gamemodes"
+                                data-placement="bottom"
+                                data-toggle="tooltip"
+                            >
                                 {modes.map(mode => {
                                     return <span key={mode.name}>{mode.bool && <span>{mode.name} </span>}</span>
                                 })}
