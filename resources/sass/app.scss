@@ -7,6 +7,10 @@ $pink: #deaae2;
 
 $bg-color: rgb(37, 51, 65);
 
+@mixin animationBasic($layer: background-color) {
+    transition: $layer .2s ease-in-out;
+}
+
 @mixin card($radius: 5px) {
     background-color: black;
     border-radius: $radius;
@@ -104,6 +108,7 @@ hr {
 .bg {
     &-blue {
         background-color: $blue;
+        @include animationBasic;
 
         &:hover {
             background-color: #157cc0;
@@ -114,6 +119,7 @@ hr {
     }
     &-login {
         background-color: #ff70b8;
+        @include animationBasic;
 
         &:hover {
             background-color: #ff4aa5;
