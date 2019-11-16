@@ -3,6 +3,7 @@ $darkgray: #1b1b1b;
 $gray: #5c5c5c;
 $lightgray: #9c9c9c;
 $lightblue: lightskyblue;
+$pink: #deaae2;
 
 $bg-color: rgb(37, 51, 65);
 
@@ -122,7 +123,7 @@ hr {
         background-color: chocolate;
     }
     &-pink {
-        background-color: #deaae2;
+        background-color: $pink;
     }
     &-purple {
         background-color: blueviolet;
@@ -240,7 +241,7 @@ hr {
     }
 
     &--nominators {
-        background-color: #deaae2;
+        background-color: $pink;
         color: $darkgray;
     }
 
@@ -293,7 +294,7 @@ hr {
 }
 
 .text-pink {
-    color: #deaae2;
+    color: $pink;
 }
 
 .user-card {
