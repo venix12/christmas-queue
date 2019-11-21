@@ -7,7 +7,7 @@ class UserCard extends Component {
             <a href={`https://osu.ppy.sh/u/${osu_id}`} class="user-card text-left">
                 <img class="avatar float-left" src={`https://a.ppy.sh/${osu_id}`}></img>
                 {username}<br></br>
-                {user_title && <span class={`color-${user_title.toLowerCase()}`}>{user_title}</span>}
+                {user_title && <span class={`color--${user_title === 'Ambassador' ? 'green' : 'gray'}`}>{user_title}</span>}
             </a>
         );
     }

@@ -3,8 +3,8 @@
 ])
 
 @php
-    $check = '<i class="fa fa-check icon-green"></i>';
-    $mark = '<i class="fa fa-remove icon-orange"></i>';
+    $check = '<i class="fa fa-check color--green"></i>';
+    $mark = '<i class="fa fa-remove color--orange"></i>';
 @endphp
 
 @section('content')
@@ -55,13 +55,13 @@
         <div class="form-wrapper">
             <input autocomplete="off" class="input-invisible" name="username" style="text-align: center; width: 150px" type="text">
         </div>
-        <div class="color-gray">username</div>
+        <div class="color--gray">username</div>
 
         <div class="form-wrapper">
             <input autocomplete="off" class="input-invisible" name="group" style="text-align: center; width: 50px" type="text">
         </div>
-        <p class="color-gray">group ID</p>
+        <p class="color--gray">group ID</p>
 
-        <input class="button bg-green" type="submit" value="Add to usergroup!">
+        <input class="button bg--green" type="submit" value="Add to usergroup!">
     </form>
 @endsection

@@ -129,14 +129,14 @@ class BeatmapCard extends Component {
                 desc={`mapped by ${creator}`}>
 
                 <div>
-                    <span class="text-lightblue">Modders</span> ({mods.length}):
+                    <span class="color--lightblue">Modders</span> ({mods.length}):
                     {mods.map((mod, index) => {
                         return <span key={index}> {mod.user.username},</span>
                     })}
                 </div>
 
                 <div>
-                    <span class="text-pink">Potential nominators</span> ({nominators.length}):
+                    <span class="color--pink">Potential nominators</span> ({nominators.length}):
                     {nominators.map((nominator, index) => {
                         return <span key={index}> {nominator.user.username},</span>
                     })}
@@ -146,7 +146,7 @@ class BeatmapCard extends Component {
 
                 {(currentUser.isModder && !modded) &&
                     <div>
-                        <button class="button bg-green" onClick={ () => this.becomeModder(0) }>
+                        <button class="button bg--green" onClick={ () => this.becomeModder(0) }>
                             <i class="fa fa-plus"></i> Mark yourself as a modder
                         </button>
                         <br /> <br />
@@ -155,15 +155,15 @@ class BeatmapCard extends Component {
 
                 {(currentUser.isModder && modded) &&
                     <div>
-                        <button class="button bg-orange" onClick={ () => this.removeModder(0)}>
+                        <button class="button bg--orange" onClick={ () => this.removeModder(0)}>
                             <i class="fa fa-minus"></i> Remove yourself from modders
                         </button>
                         <br /> <br />
                     </div>
                 }
 
-                {(currentUser.isNominator && !nominated) && <button class="button bg-pink" onClick={ () => this.becomeModder(1) }><i class="fa fa-plus"></i> Mark yourself as a potential nominator</button>}
-                {(currentUser.isNominator && nominated) && <button class="button bg-orange" onClick={ () => this.removeModder(1) }><i class="fa fa-minus"></i> Remove yourself from potential nominators</button>}
+                {(currentUser.isNominator && !nominated) && <button class="button bg--pink" onClick={ () => this.becomeModder(1) }><i class="fa fa-plus"></i> Mark yourself as a potential nominator</button>}
+                {(currentUser.isNominator && nominated) && <button class="button bg--orange" onClick={ () => this.removeModder(1) }><i class="fa fa-minus"></i> Remove yourself from potential nominators</button>}
                 {!currentUser.id &&
                     <div className="text-center">
                         <Status status="error" message="You have to be logged in to perform actions!" />
@@ -186,7 +186,7 @@ class BeatmapCard extends Component {
                     backgroundImage: `url(https://assets.ppy.sh/beatmaps/${beatmap_id}/covers/cover.jpg)`
                 }}
                 >
-                    <a class="beatmap-badge" href={`https://osu.ppy.sh/s/${beatmap_id}`}>
+                    <a class="beatmap-card__badge" href={`https://osu.ppy.sh/s/${beatmap_id}`}>
                         {metadata} <br />
                         <small>mapped by {creator}</small> <br />
                     </a> <br />
@@ -194,7 +194,7 @@ class BeatmapCard extends Component {
                         <div class="float-left">
                             <button
                                 onClick={this.openModal}
-                                class="button-circle bg-primary"
+                                class="button button--circle bg-primary"
                                 data-placement="bottom"
                                 data-toggle="tooltip"
                                 title="Details"
@@ -203,7 +203,7 @@ class BeatmapCard extends Component {
                             </button>
 
                             <div
-                                class="card-info card-info--modders"
+                                class="beatmap-card__info beatmap-card__info--modders"
                                 title="Modders"
                                 data-placement="bottom"
                                 data-toggle="tooltip"
@@ -212,7 +212,7 @@ class BeatmapCard extends Component {
                             </div>
 
                             <div
-                                class="card-info card-info--nominators"
+                                class="beatmap-card__info beatmap-card__info--nominators"
                                 title="Potential nominators"
                                 data-placement="bottom"
                                 data-toggle="tooltip"
@@ -221,7 +221,7 @@ class BeatmapCard extends Component {
                             </div>
 
                             <div
-                                class="card-info card-info--modes"
+                                class="beatmap-card__info beatmap-card__info--modes"
                                 title="Gamemodes"
                                 data-placement="bottom"
                                 data-toggle="tooltip"
@@ -235,7 +235,7 @@ class BeatmapCard extends Component {
                             {(deleted == false && (currentUser.isAmbassador && approved == false)) &&
                                 <button
                                     onClick={this.approveBeatmap}
-                                    class="button-circle bg-success"
+                                    class="button button--circle bg-success"
                                     data-toggle="tooltip"
                                     title="Approve">
                                     <i class="fa fa-check"></i>
@@ -243,7 +243,7 @@ class BeatmapCard extends Component {
                             {(currentUser.isAmbassador && deleted == false) &&
                                 <button
                                     onClick={this.deleteBeatmap}
-                                    class="button-circle bg-red"
+                                    class="button button--circle bg--red"
                                     data-toggle="tooltip"
                                     title="Delete">
                                     <i class="fa fa-trash"></i>
@@ -251,7 +251,7 @@ class BeatmapCard extends Component {
                             {(currentUser.isAmbassador && deleted == true) &&
                                 <button
                                     onClick={this.restoreBeatmap}
-                                    class="button-circle bg-warning"
+                                    class="button button--circle bg-warning"
                                     data-toggle="tooltip"
                                     title="Restore">
                                     <i class="fa fa-refresh"></i>

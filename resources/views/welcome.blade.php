@@ -32,7 +32,7 @@
 
     <!-- React -->
     <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}'></div>
-    <a class="nav-badge bg-blue" href={{ route('beatmaps') }}>
+    <a class="nav__badge bg--blue" href={{ route('beatmaps') }}>
         <i class="fa fa-chevron-down"></i> Show more <i class="fa fa-chevron-down"></i>
     </a>
 @endsection

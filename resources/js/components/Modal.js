@@ -6,15 +6,15 @@ class Modal extends Component {
         return(
             <React.Fragment>
                 <div className="modal__backdrop" onClick={onClose} />
-                <div className="modal-card">
-                    <div className="modal-card-header" style={{ backgroundImage: `url(${bgImg})` }}>
-                        <a class="beatmap-badge round-text text-left" href={link}>
+                <div className="modal__card">
+                    <div className="modal__card__header" style={{ backgroundImage: `url(${bgImg})` }}>
+                        <a class="beatmap-card__badge round-text text-left" href={link}>
                             {title} <br />
                             <small>{desc}</small>
                         </a>
-                        <button className="button-circle fa fa-times bg-dark" onClick={onClose} />
+                        <button className="button button--circle fa fa-times bg-dark" onClick={onClose} />
                     </div>
-                    <div className="modal-card-content">
+                    <div className="modal__card__content">
                         {children}
                     </div>
                 </div>

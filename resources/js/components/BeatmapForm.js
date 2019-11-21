@@ -112,11 +112,11 @@ export default class BeatmapForm extends Component {
                             value={beatmapsetId}
                             onChange={this.changeHandler}
                         />
-                        <button class="button bg-blue" type="submit"><i class="fa fa-check"></i> Request!</button>
+                        <button class="button bg--blue" type="submit"><i class="fa fa-check"></i> Request!</button>
                     </form>
                 </div>
                 <br />
-                <small class="color-gray">please put <b>beatmapset</b> URL here</small>
+                <small class="color--gray">please put <b>beatmapset</b> URL here</small>
                 <br />
                 {status && <Status
                     message={message}

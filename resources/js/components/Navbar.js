@@ -10,14 +10,14 @@ export default class Navbar extends Component {
     nav = (routes) => {
         const { currentPage } = this.props;
         return(
-            <div class="nav-bg">
+            <div class="nav__bg">
                 {routes.map((page, index) =>{
                     return(
                         <React.Fragment key={index}>
                             {page.title === currentPage ?
-                                <a class="nav-el nav-badge" href={page.href}>
+                                <a class="nav__el nav__badge" href={page.href}>
                                     {page.title}
-                                </a> : <a class="nav-el" href={page.href}>
+                                </a> : <a class="nav__el" href={page.href}>
                                     {page.title}
                                 </a>}
                         </React.Fragment>

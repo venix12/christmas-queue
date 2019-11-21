@@ -21,7 +21,7 @@ class Status extends Component {
         const [color, icon] = getIcon(this.props.status)
         return (
             <div class="warning-badge">
-                <i class={`fa fa-${icon} icon-${color} v-middle`}></i> {this.props.message}
+                <i class={`fa fa-${icon} color--${color} v-middle`}></i> {this.props.message}
             </div>
         );
     }
