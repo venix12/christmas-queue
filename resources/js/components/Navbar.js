@@ -15,7 +15,7 @@ export default class Navbar extends Component {
                     return(
                         <React.Fragment key={index}>
                             {page.title === currentPage ?
-                                <a class="nav__el nav__badge" href={page.href}>
+                                <a class="nav__el nav__el--current" href={page.href}>
                                     {page.title}
                                 </a> : <a class="nav__el" href={page.href}>
                                     {page.title}

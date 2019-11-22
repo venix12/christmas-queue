@@ -268,23 +268,21 @@ hr {
         text-align: center;
     }
 
-    &__badge {
-        background-color: white;
-        border-radius: 50px;
-        color: black !important;
-        display: inline-block;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-        text-align: center;
-        margin: 0;
-        border: none;
-        text-decoration: none !important;
-    }
-
     &__el {
         margin-left: 0.5em;
         margin-right: 0.5em;
         text-decoration: none !important;
+
+        &--current {
+            background-color: white;
+            border-radius: 50px;
+            color: black !important;
+            display: inline-block;
+            text-align: center;
+            margin: 0;
+            border: none;
+            padding: 0 .5em 0 .5em;
+        }
     }
 }
 
