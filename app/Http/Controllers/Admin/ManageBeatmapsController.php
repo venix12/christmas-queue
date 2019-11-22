@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Event;
+use App\Events\MapsetApproved;
 use App\Http\Controllers\Controller;
 use App\Mapset;
 use Auth;
@@ -20,6 +21,7 @@ class ManageBeatmapsController extends Controller
         $beatmap->save();
 
         Event::log('Approved beatmap '.$beatmap->beatmapset_artist.' - '.$beatmap->beatmapset_title);
+        event(new MapsetApproved($beatmap));
     }
 
     public function delete(Request $request)
