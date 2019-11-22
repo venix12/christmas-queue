@@ -47,7 +47,6 @@ class ManageBeatmapsController extends Controller
     public function restore(Request $request)
     {
         $beatmap = Mapset::find($request->beatmap_id);
-        $beatmap->approved = true;
         $beatmap->deleted = false;
         $beatmap->save();
 

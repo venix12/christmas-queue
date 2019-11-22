@@ -81,6 +81,7 @@ class BeatmapCard extends Component {
         axios.post('beatmap-delete', { beatmap_id: id });
 
         this.setState({
+            approved: false,
             deleted: true
         });
     }
@@ -112,8 +113,7 @@ class BeatmapCard extends Component {
         axios.post('beatmap-restore', { beatmap_id: id });
 
         this.setState({
-            deleted: false,
-            approved: true
+            deleted: false
         });
     }
 
