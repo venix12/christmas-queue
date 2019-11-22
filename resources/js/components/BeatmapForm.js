@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Modal from './Modal';
 import Status from './Status';
 
 export default class BeatmapForm extends Component {
     state = {
         beatmapsetId: '',
         message: '',
+        modal: false,
         status: '',
     }
 
@@ -34,6 +36,20 @@ export default class BeatmapForm extends Component {
     submitHandler = async (e) => {
         e.preventDefault();
         let { beatmapsetId } = this.state;
+
+        const checkbox = document.getElementById('box');
+
+        if(!checkbox.checked) {
+            const status = 'error';
+            const message = 'You have to accept the rules to request a beatmap!';
+
+            this.setState({
+                message: message,
+                status: status
+            })
+
+            return 0;
+        }
 
         try {
             var parser = await this.beatmapParse(beatmapsetId);
@@ -98,12 +114,43 @@ export default class BeatmapForm extends Component {
         }
     }
 
+    openModal = () => {
+        this.setState({
+            modal: true
+        });
+    }
+
+    closeModal = () => {
+        this.setState({
+            modal: false
+        });
+    }
+
+    modal = () => {
+        return(
+            <Modal
+                onClose={this.closeModal}
+                header={<h1 class="display-4">Christmas Queue Rules</h1>}
+            >
+                <ul>
+                    <li>The map must relate to Christmas, Winter, or the New Year.</li>
+                    <li>The request is made before the New Year (the queue will close then).</li>
+                    <li>You have participated in the creation of the map.</li>
+                    <li>You are using a Christmas avatar! (we will be too!)</li>
+                    <li>Each user can only request one map.</li>
+                    <li>If your request was invalid, you can make a new one.</li>
+                </ul>
+            </Modal>
+        );
+    }
+
     render() {
-        const { beatmapsetId, message, status } = this.state;
+        const { beatmapsetId, message, modal, status } = this.state;
         return (
             <div>
-                <div class="form-wrapper">
-                    <form onSubmit={this.submitHandler}>
+                {modal && this.modal()}
+                <form onSubmit={this.submitHandler}>
+                    <div class="form-wrapper">
                         <input
                             autoComplete="off"
                             class="input-invisible"
@@ -111,13 +158,16 @@ export default class BeatmapForm extends Component {
                             name="beatmapsetId"
                             value={beatmapsetId}
                             onChange={this.changeHandler}
+                            required
                         />
                         <button class="button bg--blue" type="submit"><i class="fa fa-check"></i> Request!</button>
-                    </form>
-                </div>
-                <br />
-                <small class="color--gray">please put <b>beatmapset</b> URL here</small>
-                <br />
+                    </div> <br />
+
+                    <small class="color--gray">please put only <b>beatmapset</b> URL here</small> <br />
+
+                    <input id="box" type="checkbox" />
+                    <label for="box" class="color--lightgray">my map meets <a href="#" onClick={this.openModal}>the rules</a></label>
+                </form>
                 {status && <Status
                     message={message}
                     status={status}

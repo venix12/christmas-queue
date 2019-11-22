@@ -41,6 +41,30 @@ hr {
     background-color: $gray;
 }
 
+input[type = checkbox] {
+    display: none;
+
+    + label {
+        user-select: none;
+    }
+
+    + label::before {
+        font-family: FontAwesome;
+        display: inline-block;
+        content: '\f096';
+        letter-spacing: 5px;
+        vertical-align: middle;
+    }
+
+    &:checked {
+        + label::before {
+            content: '\f14a';
+            letter-spacing: 4px;
+            vertical-align: middle;
+        }
+    }
+}
+
 .a-disappear {
     opacity: 0;
     transition: opacity 20s;
@@ -167,6 +191,18 @@ hr {
     }
 }
 
+.close-button {
+    font-family: FontAwesome;
+    font-size: 1.7em;
+    line-height: 100%;
+    text-shadow: 0 0 10px rgba(0,0,0,.6);
+    cursor: pointer;
+
+    &::before {
+        content: '\f00d';
+    }
+}
+
 .color {
     &--gray {
         color: $gray;
@@ -253,11 +289,10 @@ hr {
         }
 
         &__header {
-            height: 6rem;
-        padding: 0.5em;
-        color: white;
-        display: flex;
-        justify-content: space-between;
+            padding: 0.5em;
+            color: white;
+            display: flex;
+            justify-content: space-between;
         }
     }
 }
