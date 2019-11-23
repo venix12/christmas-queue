@@ -50,7 +50,7 @@ export default class BeatmapListing extends Component {
             <div class="nav__bg" style={{marginTop: '6px'}}>
                 {modes.map(mode => {
                     return <span key={mode}>
-                        <a href="#" class={ currentFilter === mode ? 'nav__el nav__badge' : 'nav__el' } onClick={() => this.modeSwitcher(mode)}>
+                        <a href="#" class={ currentFilter === mode ? 'nav__el nav__el--current' : 'nav__el' } onClick={() => this.modeSwitcher(mode)}>
                             {mode}!
                         </a>
                     </span>
