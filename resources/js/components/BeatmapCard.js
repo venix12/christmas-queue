@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './Modal';
-import { getMods, getNominators, currentUser } from '../helpers/RestApi';
+import { getMods, getNominators } from '../helpers/RestApi';
 import Status from './Status';
 
 class BeatmapCard extends Component {
@@ -19,7 +19,7 @@ class BeatmapCard extends Component {
             trigger: 'hover'
         });
 
-        const { currentUser, id } = this.props;
+        const { id } = this.props;
 
         const mods = await getMods(id);
         const nominators = await getNominators(id);
@@ -118,7 +118,7 @@ class BeatmapCard extends Component {
     }
 
     modal = () => {
-        const { beatmap_id, creator, currentUser, metadata } = this.props;
+        const { beatmap_id, creator, metadata } = this.props;
         const { mods, nominators, nominated, modded } = this.state;
         return (
             <Modal
@@ -177,7 +177,7 @@ class BeatmapCard extends Component {
     }
 
     render() {
-        const { currentUser, creator, beatmap_id, metadata, modes } = this.props;
+        const { creator, beatmap_id, metadata, modes } = this.props;
         const { approved, deleted } = this.state;
         return (
             <React.Fragment>

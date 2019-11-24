@@ -47,7 +47,6 @@ Route::group(['prefix' => 'beatmaps'], function() {
 
 //API
 Route::group(['namespace' => 'api', 'prefix' => 'api'], function() {
-    Route::get('/current-user', 'UserController@currentUser');
     Route::get('/mods', 'ModController@index');
     Route::get('/mods/{id}', 'ModController@show');
     Route::get('/nominators', 'ModController@nominatorsIndex');

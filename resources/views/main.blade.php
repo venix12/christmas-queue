@@ -34,6 +34,12 @@
 
         @include('components.footer')
 
+        <script class="current-user">
+            var currentUser = {!! Auth::check() ? json_encode(Auth::user()) : '{}' !!}
+
+            $('.current-user').remove();
+        </script>
+
         <script src="./js/app.js"></script>
     </body>
 </html>

@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-export const currentUser = async() => {
-    const response = await axios.get('api/current-user');
-    const data = await response.data;
-    return data;
-}
-
 export const getMods = async(id = 'all') => {
     let response;
 

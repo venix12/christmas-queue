@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import BeatmapCard from './BeatmapCard';
-import { currentUser } from '../helpers/RestApi';
 
 const modes = ['osu', 'taiko', 'mania', 'catch'];
 
@@ -9,19 +8,9 @@ export default class BeatmapListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: {},
             currentFilter: '',
             data: this.props.data,
-            loading: true,
         }
-    }
-
-    async componentDidMount() {
-        const res = await currentUser();
-        this.setState({
-            currentUser: res,
-            loading: false
-        })
     }
 
     modeSwitcher = (mode) => {
@@ -59,7 +48,7 @@ export default class BeatmapListing extends Component {
         )
     }
 
-    beatmapList = (currentUser) => {
+    render() {
         const { filters } = this.props;
         const { data } = this.state;
         return (
@@ -71,7 +60,6 @@ export default class BeatmapListing extends Component {
                         approved={beatmap.approved}
                         beatmap_id={beatmap.beatmapset_osu_id}
                         creator={beatmap.beatmapset_creator}
-                        currentUser={currentUser}
                         deleted={beatmap.deleted}
                         id={beatmap.id}
                         key={beatmap.id}
@@ -86,15 +74,6 @@ export default class BeatmapListing extends Component {
                 })}
             </div>
         );
-    }
-
-    render() {
-        const { currentUser, loading } = this.state;
-        return(
-            <div>
-                {!loading && this.beatmapList(currentUser)}
-            </div>
-        )
     }
 }
 
