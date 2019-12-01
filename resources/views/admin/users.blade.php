@@ -3,8 +3,10 @@
 ])
 
 @php
-    $check = '<i class="fa fa-check color--green"></i>';
-    $mark = '<i class="fa fa-remove color--orange"></i>';
+    $admins = [654108, 1541323, 5999631];
+
+    $add = 'Add to the';
+    $rm = 'Remove from the';
 @endphp
 
 @section('content')
@@ -13,55 +15,51 @@
 
     @include('components.session')
 
-    <table class="table table-borderless table-dark table-sm">
-        <thead>
-            <tr>
-                <th scope="col">User</th>
-                <th scope="col">Ambassador</th>
-                <th scope="col">Nominator</th>
-                <th scope="col">Modder</th>
-            </tr>
-        </thead>
+    @foreach ($users as $user)
+        <div class="user-listing__bg">
+            <div class="user-listing__card">
+                <div>
+                    <img class="user-listing__avatar" src="https://a.ppy.sh/{{$user->osu_id}}">
+                    <a href="https://osu.ppy.sh/u/{{$user->osu_id}}" class="user-listing__el">{{$user->username}}</a>
 
-        <tbody>
-            @foreach ($users as $user)
-                <tr style="font-size: 0.8rem">
-                    <td>
-                        <a href='https://osu.ppy.sh/u/{{$user->osu_id}}'>
-                            {{$user->username}}
-                        </a>
+                    {!! $user->isAmbassador ? usergroup_badge('ambassador') : '' !!}
+                    {!! $user->isModder ? usergroup_badge('modder') : '' !!}
+                    {!! $user->isNominator ? usergroup_badge('nominator') : '' !!}
+                </div>
+                <div>
+                    <form action={{ route('add_usergroup') }} method="POST">
+                        @csrf
 
-                        <form action={{ route('add_usergroup') }} method="POST" style="display: inline-block">
+                        <input type="hidden" name="group" value="0">
+                        <input type="hidden" name="username" value='{{$user->username}}'>
+                        <button type="submit" class="button button--circle button--circle--small bg--lightgray" title="{{$user->isModder ? $rm : $add}} modders">
+                            <i class="fa fa-{{$user->isModder ? 'minus' : 'plus'}}"></i>
+                        </button>
+                    </form>
+
+                    <form action={{ route('add_usergroup') }} method="POST">
+                        @csrf
+
+                        <input type="hidden" name="group" value="1">
+                        <input type="hidden" name="username" value='{{$user->username}}'>
+                        <button type="submit" class="button button--circle button--circle--small bg--purple" title="{{$user->isNominator ? $rm : $add}} nominators">
+                            <i class="fa fa-{{$user->isNominator ? 'minus' : 'plus'}}"></i>
+                        </button>
+                    </form>
+
+                    @if(in_array(Auth::user()->osu_id, $admins))
+                        <form action={{ route('add_usergroup') }} method="POST">
                             @csrf
 
-                            <input type="hidden" name="group" value="0">
+                            <input type="hidden" name="group" value="2">
                             <input type="hidden" name="username" value='{{$user->username}}'>
-                            <a href="#" onclick='this.parentNode.submit();'>(modder)</a>
+                            <button type="submit" class="button button--circle button--circle--small bg--green" title="{{$user->isAmbassador ? $rm : $add}} ambassadors">
+                                <i class="fa fa-{{$user->isAmbassador ? 'minus' : 'plus'}}"></i>
+                            </button>
                         </form>
-                    </td>
-                    <td>{!! $user->isAmbassador ? $check : $mark !!}</td>
-                    <td>{!! $user->isNominator ? $check : $mark !!}</td>
-                    <td>{!! $user->isModder ? $check : $mark !!}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <br><hr width="30%"><br>
-
-    <form action={{ route('add_usergroup') }} method="POST">
-        @csrf
-
-        <div class="form-wrapper">
-            <input autocomplete="off" class="input-invisible" name="username" style="text-align: center; width: 150px" type="text">
+                    @endif
+                </div>
+            </div>
         </div>
-        <div class="color--gray">username</div>
-
-        <div class="form-wrapper">
-            <input autocomplete="off" class="input-invisible" name="group" style="text-align: center; width: 50px" type="text">
-        </div>
-        <p class="color--gray">group ID</p>
-
-        <input class="button bg--green" type="submit" value="Add to usergroup!">
-    </form>
+    @endforeach
 @endsection

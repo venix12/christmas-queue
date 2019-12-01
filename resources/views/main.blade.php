@@ -40,6 +40,13 @@
             $('.current-user').remove();
         </script>
 
+
+        <script>
+            $(function () {
+                $('[title]').tooltip({ animation: false })
+            })
+        </script>
+
         <script src="./js/app.js"></script>
     </body>
 </html>

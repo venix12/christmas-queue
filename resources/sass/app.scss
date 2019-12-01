@@ -6,6 +6,7 @@ $lightblue: lightskyblue;
 $pink: #deaae2;
 
 $bg-color: rgb(37, 51, 65);
+$hover: #0a0a0a;
 
 @mixin animationBasic($layer: background-color) {
     transition: $layer .2s ease-in-out;
@@ -29,6 +30,10 @@ body {
     background-color: $bg-color;
     color: #ffffff;
     margin-bottom: 60px;
+}
+
+form {
+    display: inline-block;
 }
 
 html {
@@ -63,11 +68,6 @@ input[type = checkbox] {
             vertical-align: middle;
         }
     }
-}
-
-.a-disappear {
-    opacity: 0;
-    transition: opacity 20s;
 }
 
 .app {
@@ -144,6 +144,12 @@ input[type = checkbox] {
         text-shadow: 0px 0px 5px gray;
         margin-left: 10px;
         box-shadow: 0px 0px 20px rgb(37, 37, 37);
+
+        &--small {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
     }
 }
 
@@ -159,6 +165,10 @@ input[type = checkbox] {
 
     &--green {
         background-color: greenyellow;
+    }
+
+    &--lightgray {
+        background-color: $lightgray;
     }
 
     &--login {
@@ -347,6 +357,67 @@ input[type = checkbox] {
 
     &:hover {
         color: white;
+    }
+}
+
+.user-listing {
+    &__avatar {
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+    }
+
+    &__bg {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__card {
+        @include card;
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        &:hover {
+            background-color: $hover;
+        }
+    }
+
+    &__el {
+        color: $lightgray;
+        margin-right: 10px;
+
+        &:hover {
+            text-decoration: none !important;
+            color: white;
+        }
+    }
+}
+
+.usergroup-badge {
+    background-color: $darkgray;
+    border-radius: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1em 1em;
+    font-size: 0.75rem;
+
+    &--ambassador::before {
+        color: greenyellow;
+        content: 'ambassador';
+    }
+
+    &--modder::before {
+        color: $lightgray;
+        content: 'modder';
+    }
+
+    &--nominator::before {
+        color: $pink;
+        content: 'nominator';
     }
 }
 
