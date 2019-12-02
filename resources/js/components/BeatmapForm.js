@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Modal from './Modal';
 import Status from './Status';
+import { render } from '../helpers/Render';
 
 export default class BeatmapForm extends Component {
     state = {
@@ -177,6 +177,4 @@ export default class BeatmapForm extends Component {
     }
 }
 
-if (document.getElementById('beatmap-form')) {
-    ReactDOM.render(<BeatmapForm />, document.getElementById('beatmap-form'));
-}
+render('beatmap-form', BeatmapForm, {});

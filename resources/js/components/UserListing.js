@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import UserCard from './UserCard';
+import { render } from '../helpers/Render';
 
 const getUserTitle = (user) => {
     if(user.isAmbassador === true) {
@@ -33,7 +34,4 @@ export default class UserListing extends Component {
     }
 }
 
-if (document.getElementById('user-listing')) {
-    const data = JSON.parse(document.getElementById('user-listing').getAttribute('data'));
-    ReactDOM.render(<UserListing data={data} />, document.getElementById('user-listing'));
-}
+render('user-listing', UserListing, {data: globals.json('user-data')});

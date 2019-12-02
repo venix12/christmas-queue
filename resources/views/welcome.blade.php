@@ -31,8 +31,12 @@
     <h1>Beatmaps</h1>
 
     <!-- React -->
-    <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}'></div>
+    <div id="react--beatmap-listing" ></div>
     <a class="nav__el nav__el--current bg--blue" href={{ route('beatmaps') }}>
         <i class="fa fa-chevron-down"></i> Show more <i class="fa fa-chevron-down"></i>
     </a>
+
+    <script id="beatmap-data">
+        {!! json_encode($beatmaps) !!}
+    </script>
 @endsection

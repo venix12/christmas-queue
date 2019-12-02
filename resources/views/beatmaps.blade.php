@@ -17,8 +17,12 @@
             'warning' => 'Please, request <b>finished</b> beatmaps <b>only</b>!'
         ])
 
-        <div id="beatmap-form"></div>
+        <div id="react--beatmap-form"></div>
     @endguest
 
-    <div id="beatmap-listing" data='{{ json_encode($beatmaps) }}' filters="true"></div>
+    <div id="react--beatmap-listing"></div>
+
+    <script id="beatmap-data">
+        {!! json_encode($beatmaps) !!}
+    </script>
 @endsection

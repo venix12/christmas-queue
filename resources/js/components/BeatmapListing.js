@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import BeatmapCard from './BeatmapCard';
+import { render } from '../helpers/Render';
 
 const modes = ['osu', 'taiko', 'mania', 'catch'];
 
@@ -77,15 +77,5 @@ export default class BeatmapListing extends Component {
     }
 }
 
-const element = 'beatmap-listing';
-
-if (document.getElementById(element)) {
-    const data = JSON.parse(document.getElementById(element).getAttribute('data'));
-    const filters = document.getElementById(element).getAttribute('filters');
-    ReactDOM.render(<BeatmapListing data={data} filters={filters}/>, document.getElementById(element));
-}
-
-if (document.getElementById(`${element}2`)) {
-    const data = JSON.parse(document.getElementById(`${element}2`).getAttribute('data'));
-    ReactDOM.render(<BeatmapListing data={data} />, document.getElementById(`${element}2`));
-}
+render('beatmap-listing', BeatmapListing, {data: globals.json('beatmap-data')});
+render('beatmap-listing--d', BeatmapListing, {data: globals.json('beatmap-data--d')});

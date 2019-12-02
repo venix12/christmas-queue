@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { adminPages, pages } from './Routes';
+import { render } from '../helpers/Render';
 
 export default class Navbar extends Component {
     state = {
@@ -37,12 +38,12 @@ export default class Navbar extends Component {
     }
 }
 
-if (document.getElementById('navbar')) {
-    const currentPage = document.getElementById('navbar').getAttribute('current');
-    ReactDOM.render(<Navbar admin="false" currentPage={currentPage} />, document.getElementById('navbar'));
-}
+render('navbar', Navbar, {
+    admin: false,
+    currentPage: globals.getElementAttribute('react--navbar', 'current')
+});
 
-if (document.getElementById('navbar-admin')) {
-    const currentPage = document.getElementById('navbar-admin').getAttribute('current');
-    ReactDOM.render(<Navbar admin currentPage={currentPage} />, document.getElementById('navbar-admin'));
-}
+render('navbar-admin', Navbar, {
+    admin: true,
+    currentPage: globals.getElementAttribute('react--navbar-admin', 'current')
+});
