@@ -20,7 +20,7 @@
         <div id="react--beatmap-form"></div>
     @endguest
 
-    <div id="react--beatmap-listing"></div>
+    <div id="react--beatmap-listing" filters="true"></div>
 
     <script id="beatmap-data">
         {!! json_encode($beatmaps) !!}

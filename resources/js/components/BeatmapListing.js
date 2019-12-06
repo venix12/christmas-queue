@@ -77,5 +77,8 @@ export default class BeatmapListing extends Component {
     }
 }
 
-render('beatmap-listing', BeatmapListing, {data: globals.json('beatmap-data')});
+render('beatmap-listing', BeatmapListing, {
+    data: globals.json('beatmap-data'),
+    filters: globals.getElementAttribute('react--beatmap-listing', 'filters') || false
+});
 render('beatmap-listing--d', BeatmapListing, {data: globals.json('beatmap-data--d')});
