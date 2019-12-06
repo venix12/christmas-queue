@@ -8,23 +8,24 @@
 
     @include('components.session')
 
-    <table class="table table-dark table-sm text-left">
-        <thead>
-            <tr>
-                <th scope="col">User</th>
-                <th scope="col">Date</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
+    @foreach($events as $event)
+        <div class="user-listing__bg">
+            <div class="user-listing__card">
+                <div>
+                    <div>
+                        <img class="user-listing__avatar" src="https://a.ppy.sh/{{$event->user->osu_id}}">
+                        <a href="https://osu.ppy.sh/u/{{$event->user->osu_id}}" class="user-listing__el user-listing__el--link">{{$event->user->username}}</a>
+                        <span class="user-listing__el user-listing__el--content">
+                            {{$event->action}}
+                        </span>
+                    </div>
+                </div>
+                <div class="user-listing__el user-listing__el--content">
+                    {{substr($event->created_at, 0, 16)}}
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-        <tbody>
-            @foreach ($events as $event)
-                <tr style="font-size: 0.8rem">
-                    <td>{{$event->user->username}}</td>
-                    <td>{{$event->created_at}}</td>
-                    <td>{{$event->action}}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    {{ $events->links('components.paginator') }}
 @endsection
