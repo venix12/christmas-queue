@@ -84,13 +84,6 @@ input[type = checkbox] {
     border-radius: 15px;
 }
 
-.avatar {
-    width: 75px;
-    height: 75px;
-    margin-right: 5px;
-    border-radius: 10%;
-}
-
 .beatmap-card {
     @include card;
     margin: 10px;
@@ -355,20 +348,38 @@ input[type = checkbox] {
 }
 
 .user-card {
-    @include card;
-    @include round-text;
-    color: $lightgray;
-    margin: 10px;
-    width: 300px;
+    @include card();
+    @include round-text();
+    width: 100% / 3 - 1%;
+    margin: 0 1% 1% 0;
     height: 90px;
-    text-decoration: none !important;
 
     &:hover {
-        color: white;
+        background-color: $hover;
+    }
+
+    &__link {
+        @include link-clear();
+        color: $lightgray;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &__avatar {
+        width: 75px;
+        height: 75px;
+        margin-right: 5px;
+        border-radius: 10%;
+        float: left;
     }
 }
 
 .user-listing {
+    width: 80%;
+    margin: auto;
+
     &__avatar {
         border-radius: 100%;
         width: 40px;
@@ -377,13 +388,12 @@ input[type = checkbox] {
     }
 
     &__bg {
-        display: flex;
+        display: block;
         justify-content: center;
     }
 
     &__card {
         @include card;
-        width: 70%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -409,6 +419,10 @@ input[type = checkbox] {
                 color: white;
             }
         }
+    }
+
+    &--link {
+        cursor: pointer;
     }
 }
 
@@ -472,7 +486,27 @@ input[type = checkbox] {
 
     &__page {
         display: inline-block;
-        margin-right: 5px;
+        margin-right: 1px;
+    }
+}
+
+.toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+
+    &__el {
+        color: $lightgray;
+        padding: .4em;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+
+        &--current {
+            color: white;
+        }
     }
 }
 
