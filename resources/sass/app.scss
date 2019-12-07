@@ -482,6 +482,10 @@ input[type = checkbox] {
                 color: black;
             }
         }
+
+        &--icon {
+            font-size: .7rem;
+        }
     }
 
     &__page {
