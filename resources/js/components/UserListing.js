@@ -26,7 +26,7 @@ export default class UserListing extends Component {
     cards = () => {
         const { data } = this.props;
         return (
-            <div>
+            <div className="user-card-grid">
                 {data.map(user => {
                     return <UserCard
                         key={user.id}

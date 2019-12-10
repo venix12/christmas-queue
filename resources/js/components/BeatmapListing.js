@@ -55,23 +55,25 @@ export default class BeatmapListing extends Component {
             <div>
                 {filters && <div>{this.modeFilter()}<br /></div>}
 
-                {data.map(beatmap => {
-                    return <BeatmapCard
-                        approved={beatmap.approved}
-                        beatmap_id={beatmap.beatmapset_osu_id}
-                        creator={beatmap.beatmapset_creator}
-                        deleted={beatmap.deleted}
-                        id={beatmap.id}
-                        key={beatmap.id}
-                        metadata={`${beatmap.beatmapset_artist} - ${beatmap.beatmapset_title}`}
-                        modes={[
-                            { name: 'osu!', bool: beatmap.osu },
-                            { name: 'taiko!', bool: beatmap.taiko },
-                            { name: 'mania!', bool: beatmap.mania },
-                            { name: 'catch!', bool: beatmap.catch }
-                        ]}
-                    />
-                })}
+                <div className="beatmap-card-grid">
+                    {data.map(beatmap => {
+                        return <BeatmapCard
+                            approved={beatmap.approved}
+                            beatmap_id={beatmap.beatmapset_osu_id}
+                            creator={beatmap.beatmapset_creator}
+                            deleted={beatmap.deleted}
+                            id={beatmap.id}
+                            key={beatmap.id}
+                            metadata={`${beatmap.beatmapset_artist} - ${beatmap.beatmapset_title}`}
+                            modes={[
+                                { name: 'osu!', bool: beatmap.osu },
+                                { name: 'taiko!', bool: beatmap.taiko },
+                                { name: 'mania!', bool: beatmap.mania },
+                                { name: 'catch!', bool: beatmap.catch }
+                            ]}
+                        />
+                    })}
+                </div>
             </div>
         );
     }
