@@ -32,8 +32,17 @@
 
     <!-- React -->
     <div id="react--beatmap-listing" ></div>
-    <a class="nav__el nav__el--current bg--blue" href={{ route('beatmaps') }}>
-        <i class="fa fa-chevron-down"></i> Show more <i class="fa fa-chevron-down"></i>
+
+    <a class="show-more" href={{ route('beatmaps') }}>
+        <span class="show-more--icon">
+            <i class="fa fa-angle-down"></i>
+        </span>
+
+        <span class="show-more__label"></span>
+
+        <span class="show-more--icon">
+            <i class="fa fa-angle-down"></i>
+        </span>
     </a>
 
     <script id="beatmap-data">

@@ -509,6 +509,30 @@ input[type = checkbox] {
     }
 }
 
+.show-more {
+    @include link-clear();
+    background-color: black;
+    font-size: .7rem;
+    padding: .5em 1em;
+    color: $lightgray;
+    border-radius: 50px;
+    margin-bottom: 5px;
+
+    &:hover {
+        background-color: $hover;
+    }
+
+    &--icon {
+        color: $lightblue;
+        margin: 0 5px;
+    }
+
+    &__label::before {
+        content: 'SHOW MORE';
+        color: $lightgray
+    }
+}
+
 .toggle {
     display: flex;
     justify-content: flex-end;
