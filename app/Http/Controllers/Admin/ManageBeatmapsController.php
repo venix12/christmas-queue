@@ -6,10 +6,7 @@ use App\Event;
 use App\Events\MapsetApproved;
 use App\Http\Controllers\Controller;
 use App\Mapset;
-use Auth;
-use Cache;
 use Illuminate\Http\Request;
-use OsuApi;
 
 class ManageBeatmapsController extends Controller
 {
@@ -55,10 +52,8 @@ class ManageBeatmapsController extends Controller
 
     public function forumExport()
     {
-        static $rankedStatusCacheTime = 240; // 4 hours
-
         $bbcode = '';
-        $mapsets = Mapset::where('approved', true)->get();
+        $mapsets = Mapset::queued()->get();
 
         foreach (Mapset::MODES as $mode) {
             $mapsForMode = $mapsets->where($mode, true);
@@ -72,11 +67,7 @@ class ManageBeatmapsController extends Controller
             foreach ($mapsForMode as $set) {
                 $bbcode .= "[*][url=https://osu.ppy.sh/beatmapsets/$set->beatmapset_osu_id]$set->beatmapset_artist - $set->beatmapset_title[/url] ([url=https://osu.ppy.sh/users/$set->osu_user_id]$set->beatmapset_creator[/url])";
 
-                $rankedStatus = Cache::remember("ranked-status:$set->beatmapset_osu_id", $rankedStatusCacheTime, function () use ($set) {
-                    return OsuApi::getBeatmapset($set->beatmapset_osu_id)[0]->approved;
-                });
-
-                switch (Mapset::RANKED_STATUSES[$rankedStatus]) {
+                switch ($set->ranked_status) {
                     case 'ranked':
                     case 'approved':
                         $bbcode .= ' [b]RANKED[/b]';

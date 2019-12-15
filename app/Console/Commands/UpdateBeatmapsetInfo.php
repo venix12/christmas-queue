@@ -12,7 +12,7 @@ class UpdateBeatmapsetInfo extends Command
 
     public function handle()
     {
-        $mapsets = Mapset::where('approved', true)->where('deleted', false)->get();
+        $mapsets = Mapset::queued()->get();
 
         $bar = $this->output->createProgressBar(count($mapsets));
         $bar->start();
