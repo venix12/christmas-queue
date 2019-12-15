@@ -35,8 +35,19 @@ class Mapset extends Model
         'osu',
         'osu_user_id',
         'taiko',
-        'user_id'
+        'user_id',
+        'ranked_status',
     ];
+
+    public function getRankedStatusAttribute(?int $rankedStatus)
+    {
+        return self::RANKED_STATUSES[$rankedStatus] ?? null;
+    }
+
+    public function scopeQueued($query)
+    {
+        return $query->where('approved', true)->where('deleted', false);
+    }
 
     public static function createFromOnline(int $beatmapsetId, User $user)
     {
@@ -82,6 +93,7 @@ class Mapset extends Model
             'taiko' => $modes[1],
             'catch' => $modes[2],
             'mania' => $modes[3],
+            'ranked_status' => $apiBeatmaps[0]->approved,
         ]);
 
         return true;
