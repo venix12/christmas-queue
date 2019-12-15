@@ -20,11 +20,11 @@ class OsuApi
 
     private function call(string $resource, array $query)
     {
-        while (Cache::has(RATE_KEY)) {
-            usleep(1000000 * RATE_LIMIT + 1);
+        while (Cache::has(self::RATE_KEY)) {
+            usleep(1000000 * self::RATE_LIMIT + 1);
         }
 
-        Cache::put(RATE_KEY, RATE_KEY, RATE_LIMIT / 60);
+        Cache::put(self::RATE_KEY, self::RATE_KEY, self::RATE_LIMIT / 60);
 
         $query['k'] = $this->apiKey;
         $response = Guzzle::get('https://osu.ppy.sh/api/' . $resource, ['query' => $query]);
