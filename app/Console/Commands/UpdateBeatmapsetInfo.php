@@ -24,5 +24,6 @@ class UpdateBeatmapsetInfo extends Command
         }
 
         $bar->finish();
+        $this->output->newLine();
     }
 }
