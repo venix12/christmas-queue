@@ -4,6 +4,7 @@ namespace App;
 
 use App\Exceptions\OsuApiException;
 use Cache;
+use Carbon\Carbon;
 use Guzzle;
 
 class OsuApi
@@ -20,11 +21,15 @@ class OsuApi
 
     private function call(string $resource, array $query)
     {
-        while (Cache::has(self::RATE_KEY)) {
-            usleep(1000000 * self::RATE_LIMIT + 1);
+        $nextCallAt = Cache::get(self::RATE_KEY);
+
+        if ($nextCallAt !== null) {
+            while ($nextCallAt->isFuture()) {
+                usleep(1000000 * self::RATE_LIMIT + 1);
+            }
         }
 
-        Cache::put(self::RATE_KEY, self::RATE_KEY, self::RATE_LIMIT / 60);
+        Cache::forever(self::RATE_KEY, Carbon::now()->addMilliseconds(1000 * self::RATE_LIMIT));
 
         $query['k'] = $this->apiKey;
         $response = Guzzle::get('https://osu.ppy.sh/api/' . $resource, ['query' => $query]);
