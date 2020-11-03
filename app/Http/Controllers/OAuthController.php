@@ -63,7 +63,7 @@ class OauthController extends Controller
 
         $osuUserId = $userApi['id'];
         $username = $userApi['username'];
-        $isBnOrNat = $userApi['is_bng'] === true || $userApi['is_nat'] === true;
+        $isBnOrNat = in_array([7, 28, 32], array_column($userApi['groups'], 'id'));
 
         $user = User::where('osu_id', $osuUserId)->first();
 
