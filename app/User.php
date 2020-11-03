@@ -6,6 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $fillable = [
+        'isAmbassador',
+        'isModder',
+        'isNominator',
+        'osu_id',
+        'username',
+    ];
+
     protected $casts = [
         'isAmbassador' => 'boolean',
         'isNominator' => 'boolean',

@@ -63,22 +63,33 @@ class OauthController extends Controller
 
         $osuUserId = $userApi['id'];
         $username = $userApi['username'];
-        $isBnOrNat = in_array([7, 28, 32], array_column($userApi['groups'], 'id'));
+
+        $viableGroupids = [7, 28, 32];
+        $isBnOrNat = false;
+
+        foreach ($viableGroupids as $id) {
+            if (in_array($id, array_column($userApi['groups'], 'id'))) {
+                $isBnOrNat = true;
+                break;
+            }
+        }
 
         $user = User::where('osu_id', $osuUserId)->first();
 
-        if($user === null)
-        {
-            $u = new User();
-            $u->osu_id = $osuUserId;
-            $u->username = $username;
-            if($isBnOrNat)
-            {
-                $u->isNominator = true;
-            }
-            $u->save();
+        if ($user === null) {
+            User::create([
+                'isNominator' => $isBnOrNat,
+                'osu_id' => $osuUserId,
+                'username' => $username,
+            ]);
 
             return redirect('/login');
+        }
+
+        if ($isBnOrNat === true) {
+            $user->update([
+                'isNominator' => true,
+            ]);
         }
 
         Auth::login($user);
