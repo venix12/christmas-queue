@@ -3,8 +3,11 @@
 ])
 
 @section('content')
-    <h1 class="display-4">Log</h1>
-    <hr width="30%">
+    @include('components._header', [
+        'color' => 'admin',
+        'icon' => 'wrench',
+        'section' => 'Log',
+    ])
 
     @include('components.session')
 

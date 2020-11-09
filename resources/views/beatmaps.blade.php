@@ -3,24 +3,33 @@
 ])
 
 @section('content')
-    <h1 class="display-4">Beatmap Listing</h1>
+    @include('components._header', [
+        'color' => 'beatmaps',
+        'icon' => 'tree',
+        'section' => 'Beatmaps',
+    ])
 
-    <!-- React -->
-    @guest
-        @include('components.warning-badge', [
-            'icon' => 'warning',
-            'warning' => 'You have to be logged in to request modding!'
-        ])
-    @else
-        @include('components.warning-badge', [
-            'icon' => 'warning',
-            'warning' => 'Please, request <b>finished</b> beatmaps <b>only</b>!'
-        ])
+    <div class="section section--2 section--small">
+        request finished beatmaps only!
+    </div>
 
-        <div id="react--beatmap-form"></div>
-    @endguest
+    <div class="section section--3">
+        <h3>Request form</h3>
 
-    <div id="react--beatmap-listing" filters="true"></div>
+        @auth
+            <!-- React -->
+            <div id="react--beatmap-form"></div>
+        @else
+            <div class="url-clean url-clean--red">
+                <a href="{{ route('login') }}">please, log in to request modding!</a>
+            </div>
+        @endauth
+    </div>
+
+    <div class="section section--1">
+        <!-- React -->
+        <div id="react--beatmap-listing" filters="true"></div>
+    </div>
 
     <script id="beatmap-data">
         {!! json_encode($beatmaps) !!}

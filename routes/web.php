@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', 'BeatmapController@index');
+Route::get('/', 'BeatmapController@index')->name('home');
 
 Route::get('/users', function() {
     return view('users');
-});
+})->name('users');
 
 Route::get('/beatmaps', 'BeatmapController@beatmaps')->name('beatmaps');
 
@@ -28,14 +28,14 @@ Route::get('/logout', function() {
 })->name('logout');
 
 Route::group(['middleware' => 'is_ambassador', 'namespace' => 'Admin'], function() {
-    Route::get('/admin-beatmaps', 'ManageBeatmapsController@index');
-    Route::get('/admin-users', 'ManageUsersController@index');
-    Route::get('/log', 'LogController@index');
+    Route::get('/admin-beatmaps', 'ManageBeatmapsController@index')->name('admin.beatmaps');
+    Route::get('/admin-users', 'ManageUsersController@index')->name('admin.users');
+    Route::get('/log', 'LogController@index')->name('admin.log');
     Route::post('/add-usergroup', 'ManageUsersController@addUsergroup')->name('add_usergroup');
     Route::post('/beatmap-approve', 'ManageBeatmapsController@approve');
     Route::post('/beatmap-delete', 'ManageBeatmapsController@delete');
     Route::post('/beatmap-restore', 'ManageBeatmapsController@restore');
-    Route::get('/forum-export', 'ManageBeatmapsController@forumExport');
+    Route::get('/forum-export', 'ManageBeatmapsController@forumExport')->name('admin.forum-export');
 });
 
 

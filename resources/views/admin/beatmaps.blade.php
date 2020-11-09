@@ -3,9 +3,13 @@
 ])
 
 @section('content')
-    <h1 class="display-4">Manage Beatmaps</h1>
-    <hr width="30%">
-    Beatmaps waiting for approval ({{ count($beatmapsNotApproved) }})
+    @include('components._header', [
+        'color' => 'admin',
+        'icon' => 'wrench',
+        'section' => 'Manage beatmaps',
+    ])
+
+    <h3>Beatmaps waiting for approval ({{ $beatmapsNotApproved->count() }})</h3>
 
     <!-- React -->
     <div id="react--beatmap-listing"></div>

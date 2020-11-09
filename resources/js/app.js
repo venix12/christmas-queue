@@ -14,7 +14,6 @@ require('./bootstrap');
 
 require('./components/BeatmapForm.js');
 require('./components/BeatmapListing.js');
-require('./components/Navbar.js');
 require('./components/UserListing.js');
 
 import './globals.js';

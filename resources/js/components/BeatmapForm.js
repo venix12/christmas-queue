@@ -12,17 +12,19 @@ export default class BeatmapForm extends Component {
         status: '',
     }
 
-    beatmapParse = (url) => {
+    parseBeatmap = (url) => {
         let split;
 
-        if(url.includes('/beatmapsets/')) {
+        if (url.includes('/beatmapsets/')) {
             const a = url.split('/beatmapsets/');
             split = a[1].split('#');
+
             return split[0];
-        } else if(url.includes('/s/')) {
+        } else if (url.includes('/s/')) {
             split = url.split('/s/');
+
             return split[1];
-        } else if(url.includes('/b/')) {
+        } else if (url.includes('/b/')) {
             return 'wrong_link';
         }
     }
@@ -39,7 +41,7 @@ export default class BeatmapForm extends Component {
 
         const checkbox = document.getElementById('box');
 
-        if(!checkbox.checked) {
+        if (!checkbox.checked) {
             const status = 'error';
             const message = 'You have to accept the rules to request a beatmap!';
 
@@ -48,33 +50,34 @@ export default class BeatmapForm extends Component {
                 status: status
             })
 
-            return 0;
+            return;
         }
 
-        try {
-            var parser = await this.beatmapParse(beatmapsetId);
 
-            if(parser === 'wrong_link') {
-                const status = 'error';
-                const message = '/b/ links are not supported, you should use the /s/ one instead!';
+        var parser = await this.parseBeatmap(beatmapsetId);
 
-                this.setState({
-                    message: message,
-                    status: status
-                })
-
-                return 0;
-            }
-        } catch (err) {
+        if (!parser) {
             const status = 'error';
-            const message = 'Seems like the URL format is wrong...';
+            const message = 'Seems like your URL is wrong...';
 
             this.setState({
                 message: message,
                 status: status
             })
 
-            return 0;
+            return;
+        }
+
+        if (parser === 'wrong_link') {
+            const status = 'error';
+            const message = '/b/ links are not supported, you should use the /s/ one instead!';
+
+            this.setState({
+                message: message,
+                status: status
+            })
+
+            return;
         }
 
         beatmapsetId = parser;
@@ -88,7 +91,7 @@ export default class BeatmapForm extends Component {
 
         const res = await axios.post('beatmaps', data);
         try {
-            if(typeof(res.data.error) !== 'undefined') {
+            if (typeof(res.data.error) !== 'undefined') {
                 status = 'error';
                 message = res.data.error;
             } else {
@@ -160,18 +163,20 @@ export default class BeatmapForm extends Component {
                             onChange={this.changeHandler}
                             required
                         />
-                        <button class="button bg--blue" type="submit"><i class="fa fa-check"></i> Request!</button>
+                        <button class="button bg--green" type="submit"><i class="fa fa-check"></i> Request!</button>
                     </div> <br />
 
                     <small class="color--gray">please put only <b>beatmapset</b> URL here</small> <br />
 
                     <input id="box" type="checkbox" />
-                    <label for="box" class="color--lightgray">my map meets <a href="#" onClick={this.openModal}>the rules</a></label>
+                    <label for="box" class="color--lightgray">my map meets <span className="url-clean" onClick={this.openModal}>the rules</span></label>
                 </form>
-                {status && <Status
-                    message={message}
-                    status={status}
-                />}
+                {status &&
+                    <Status
+                        message={message}
+                        status={status}
+                    />
+                }
             </div>
         );
     }

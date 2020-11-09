@@ -10,8 +10,11 @@
 @endphp
 
 @section('content')
-    <h1 class="display-4">Manage Users</h1>
-    <hr width="30%">
+    @include('components._header', [
+        'color' => 'admin',
+        'icon' => 'wrench',
+        'section' => 'Manage users',
+    ])
 
     @include('components.session')
 

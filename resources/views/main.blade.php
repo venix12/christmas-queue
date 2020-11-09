@@ -8,6 +8,7 @@
         <title>{{$title}} | Christmas Queue</title>
 
         <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href='{{ mix('/css/app.css') }}'>
@@ -17,15 +18,35 @@
     </head>
 
     <body class="d-flex flex-column">
+        @include('components._navbar', [
+            'routes' => ['home', 'beatmaps', 'users'],
+            'title' => 'Christmas Queue 2020',
+        ])
+
         <main class="py-4">
             <div class="container">
                 <div class="app text-center">
-                    <div id="react--navbar" current='{{$title}}'></div>
                     @yield('content')
 
                     @auth
-                        @if(Auth::user()->isAmbassador())
-                            <div id="react--navbar-admin" current='{{$title}}' style="margin-top: 3px"></div>
+                        @if (Auth::user()->isAmbassador())
+                            <div class="section section--1 section--small d-inline-flex">
+                                <div class="navigation-bar__el navigation-bar__el--home">
+                                    <a href="{{ route('admin.log') }}">log</a>
+                                </div>
+
+                                <div class="navigation-bar__el navigation-bar__el--home">
+                                    <a href="{{ route('admin.beatmaps') }}">manage beatmaps</a>
+                                </div>
+
+                                <div class="navigation-bar__el navigation-bar__el--home">
+                                    <a href="{{ route('admin.users') }}">manage users</a>
+                                </div>
+
+                                <div class="navigation-bar__el navigation-bar__el--home">
+                                    <a href="{{ route('admin.forum-export') }}">forum template</a>
+                                </div>
+                            </div>
                         @endif
                     @endauth
                 </div>
@@ -47,6 +68,6 @@
             })
         </script>
 
-        <script src='{{ mix('/js/app.js') }}'></script>
+        <script src='{{ asset('/js/app.js') }}'></script>
     </body>
 </html>
