@@ -4,9 +4,11 @@ import { render } from '../helpers/Render';
 import UserPanel from './UserPanel';
 
 const getUserTitle = (user) => {
-    if(user.isAmbassador === true) {
+    if (user.isAmbassador === true) {
         return 'Ambassador';
-    } else if(user.isModder) {
+    } else if (user.isNominator) {
+        return 'Nominator';
+    } else if (user.isModder) {
         return 'Modder';
     }
 }
