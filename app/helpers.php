@@ -1,5 +1,13 @@
 <?php
 
+function gamemode(string $mode) {
+    $mode === 'osu'
+        ? $modeName = 'osu!'
+        : $modeName = "osu!$mode";
+
+    return $modeName;
+}
+
 function usergroup_badge($group) {
     $groups = ['ambassador', 'modder', 'nominator'];
 

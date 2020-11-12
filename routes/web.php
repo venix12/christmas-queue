@@ -35,7 +35,8 @@ Route::group(['middleware' => 'is_ambassador', 'namespace' => 'Admin'], function
     Route::post('/beatmap-approve', 'ManageBeatmapsController@approve');
     Route::post('/beatmap-delete', 'ManageBeatmapsController@delete');
     Route::post('/beatmap-restore', 'ManageBeatmapsController@restore');
-    Route::get('/forum-export', 'ManageBeatmapsController@forumExport')->name('admin.forum-export');
+    Route::get('/forum-export-beatmaps', 'ManageBeatmapsController@forumExport')->name('admin.forum-export-beatmaps');
+    Route::get('/forum-export-modders', 'ManageUsersController@forumExport')->name('admin.forum-export-modders');
 });
 
 

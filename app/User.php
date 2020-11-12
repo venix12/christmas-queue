@@ -7,17 +7,25 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $fillable = [
+        'catch',
         'isAmbassador',
         'isModder',
         'isNominator',
+        'mania',
+        'osu',
         'osu_id',
+        'taiko',
         'username',
     ];
 
     protected $casts = [
+        'catch' => 'boolean',
         'isAmbassador' => 'boolean',
         'isNominator' => 'boolean',
-        'isModder' => 'boolean'
+        'isModder' => 'boolean',
+        'mania' => 'boolean',
+        'osu' => 'boolean',
+        'taiko' => 'boolean',
     ];
 
     public static function sorted() {
@@ -34,7 +42,7 @@ class User extends Authenticatable
         foreach($sorts as $sort) {
             foreach($users->where($sort, true) as $user) {
                 if(!in_array($user, $users_api)) {
-                $users_api[] = $user;
+                    $users_api[] = $user;
                 }
             }
         }
@@ -61,7 +69,7 @@ class User extends Authenticatable
     }
 
     public function mods() {
-        return $this->hasMany('App\Mod');
+        return $this->hasMany(Mod::class);
     }
 
     public function requestedMaps()

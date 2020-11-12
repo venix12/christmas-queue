@@ -44,7 +44,11 @@
                                 </div>
 
                                 <div class="navigation-bar__el navigation-bar__el--home">
-                                    <a href="{{ route('admin.forum-export') }}">forum template</a>
+                                    <a href="{{ route('admin.forum-export-beatmaps') }}">forum beatmaps</a>
+                                </div>
+
+                                <div class="navigation-bar__el navigation-bar__el--home">
+                                    <a href="{{ route('admin.forum-export-modders') }}">forum modders</a>
                                 </div>
                             </div>
                         @endif

@@ -6,6 +6,7 @@ use App\Event;
 use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
+use App\Mapset;
 use Illuminate\Http\Request;
 
 class ManageUsersController extends Controller
@@ -53,6 +54,35 @@ class ManageUsersController extends Controller
 
         return redirect()->back()
             ->with('success', 'Successfully changed the usergroup!');
+    }
+
+    public function forumExport()
+    {
+        $modders = User::where('isModder', true)
+            ->orderBy('username');
+
+        $bbcode = '';
+
+        foreach (Mapset::MODES as $mode) {
+            $moddersForMode = $modders->where($mode, true)->get();
+
+            if ($moddersForMode->count() === 0) {
+                continue;
+            }
+
+            $modeName = gamemode($mode);
+            $bbcode .= "$modeName\n[list=1]\n";
+
+            foreach ($moddersForMode as $modder) {
+                $bbcode .= "[*][profile=$modder->username]$modder->username[/profile]";
+
+                $bbcode .= "\n";
+            }
+
+            $bbcode .= "[/list]\n";
+        }
+
+        return response($bbcode)->header('Content-Type', 'text/plain');
     }
 
     public function index()
