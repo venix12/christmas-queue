@@ -59,12 +59,13 @@ class ManageUsersController extends Controller
     public function forumExport()
     {
         $modders = User::where('isModder', true)
-            ->orderBy('username');
+            ->orderBy('username')
+            ->get();
 
         $bbcode = '';
 
         foreach (Mapset::MODES as $mode) {
-            $moddersForMode = $modders->where($mode, true)->get();
+            $moddersForMode = $modders->where($mode, true);
 
             if ($moddersForMode->count() === 0) {
                 continue;
@@ -74,9 +75,7 @@ class ManageUsersController extends Controller
             $bbcode .= "$modeName\n[list=1]\n";
 
             foreach ($moddersForMode as $modder) {
-                $bbcode .= "[*][profile=$modder->username]$modder->username[/profile]";
-
-                $bbcode .= "\n";
+                $bbcode .= "[*][profile=$modder->username]$modder->username[/profile]\n";
             }
 
             $bbcode .= "[/list]\n";
