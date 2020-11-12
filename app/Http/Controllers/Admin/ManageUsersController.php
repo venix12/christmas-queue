@@ -72,10 +72,18 @@ class ManageUsersController extends Controller
             }
 
             $modeName = gamemode($mode);
-            $bbcode .= "$modeName\n[list=1]\n";
+            $bbcode .= "$modeName\n[list]\n";
 
             foreach ($moddersForMode as $modder) {
-                $bbcode .= "[*][profile=$modder->username]$modder->username[/profile]\n";
+                $star = '';
+
+                if ($modder->isNat) {
+                    $star = '[color=#FF8F00]*[/color] ';
+                } else if ($modder->isNominator) {
+                    $star = '[color=#BF40FF]*[/color] ';
+                }
+
+                $bbcode .= "[*][profile=$modder->username]$star$modder->username[/profile]\n";
             }
 
             $bbcode .= "[/list]\n";
