@@ -92,4 +92,19 @@ class ManageUsersController extends Controller
         return view('admin.users')
             ->with('users', $users);
     }
+
+    public function switchGamemode()
+    {
+        $data = request()->all();
+
+        $mode = $data['gamemode'];
+        $user = User::where('username', $data['username'])->first();
+
+        $user->update([
+            $mode => $user->$mode ? false : true,
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Successfully switched the gamemode!');
+    }
 }

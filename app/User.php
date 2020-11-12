@@ -56,6 +56,18 @@ class User extends Authenticatable
         return $users_api;
     }
 
+    public function gamemodes() {
+        $gamemodes = [];
+
+        foreach (Mapset::MODES as $mode) {
+            if ($this->$mode === true) {
+                $gamemodes[] = $mode;
+            }
+        }
+
+        return $gamemodes;
+    }
+
     public function isAmbassador() {
         return $this->isAmbassador;
     }

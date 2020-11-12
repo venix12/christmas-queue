@@ -31,6 +31,29 @@
                         {!! $user->isNominator ? usergroup_badge('nominator') : '' !!}
                     </div>
                     <div>
+                        <div style="font-size: .8em">
+                            @foreach ($user->gamemodes() as $gamemode)
+                                {{ gamemode($gamemode) }}
+                            @endforeach
+                        </div>
+
+
+                        <form action="{{ route('admin.users.switch-gamemode') }}" method="POST" style="margin-right: 30px">
+                            @csrf
+
+                            <input type="hidden" name="username" value='{{$user->username}}'>
+
+                            <select name="gamemode">
+                                @foreach (App\Mapset::MODES as $mode)
+                                    <option value="{{ $mode }}">{{ gamemode($mode) }}</option>
+                                @endforeach
+                            </select>
+
+                            <button type="submit" class="button button--circle button--circle--small bg--lightgray" title="switch selected gamemode">
+                                <i class="fa fa-random" style="margin-left: -1px"></i>
+                            </button>
+                        </form>
+
                         <form action={{ route('add_usergroup') }} method="POST">
                             @csrf
 
