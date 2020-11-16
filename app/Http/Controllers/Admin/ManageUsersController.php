@@ -83,7 +83,7 @@ class ManageUsersController extends Controller
                     $star = '[color=#BF40FF]*[/color] ';
                 }
 
-                $bbcode .= "[*][profile=$modder->username]$star$modder->username[/profile]\n";
+                $bbcode .= "[*][profile]$star$modder->username[/profile]\n";
             }
 
             $bbcode .= "[/list]\n";
