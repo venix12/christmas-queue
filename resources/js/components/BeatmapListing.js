@@ -72,6 +72,7 @@ export default class BeatmapListing extends Component {
                                 { name: 'mania!', bool: beatmap.mania },
                                 { name: 'catch!', bool: beatmap.catch }
                             ]}
+                            rankedStatus={beatmap.ranked_status}
                         />
                     })}
                 </div>

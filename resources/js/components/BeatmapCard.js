@@ -177,7 +177,7 @@ class BeatmapCard extends Component {
     }
 
     render() {
-        const { creator, beatmap_id, metadata, modes } = this.props;
+        const { creator, beatmap_id, metadata, modes, rankedStatus } = this.props;
         const { approved, deleted } = this.state;
         return (
             <React.Fragment>
@@ -232,6 +232,15 @@ class BeatmapCard extends Component {
                                 {modes.map(mode => {
                                     return <span key={mode.name}>{mode.bool && <span>{mode.name} </span>}</span>
                                 })}
+                            </div>
+
+                            <div
+                                className="beatmap-card__info beatmap-card__info--status"
+                                title="Status"
+                                data-placement="bottom"
+                                data-toggle="tooltip"
+                            >
+                                {rankedStatus}
                             </div>
                         </div>
                         <div class="float-right">

@@ -150,6 +150,11 @@ input[type = checkbox] {
         &--modes {
             color: $lightgray;
         }
+
+        &--status {
+            background-color: white;
+            color: black;
+        }
     }
 }
 
