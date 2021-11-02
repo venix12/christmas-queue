@@ -9,7 +9,7 @@ use Guzzle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class OauthController extends Controller
+class OAuthController extends Controller
 {
     public function getToken(Request $request)
     {
