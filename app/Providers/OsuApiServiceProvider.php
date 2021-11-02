@@ -15,7 +15,7 @@ class OsuApiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('osu-api', function () {
-            return new OsuApi(env('MIX_OSU_API_KEY'));
+            return new OsuApi(env('OSU_LEGACY_API_KEY'));
         });
     }
 }
