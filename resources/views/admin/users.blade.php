@@ -3,8 +3,6 @@
 ])
 
 @php
-    $admins = [654108, 1541323, 5999631];
-
     $add = 'Add to the';
     $rm = 'Remove from the';
 @endphp
@@ -74,7 +72,7 @@
                             </button>
                         </form>
 
-                        @if(in_array(Auth::user()->osu_id, $admins))
+                        @if (auth()->user()->isAdmin())
                             <form action={{ route('add_usergroup') }} method="POST">
                                 @csrf
 

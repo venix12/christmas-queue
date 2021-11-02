@@ -2,6 +2,8 @@
 
 return [
 
+    'admin_user_ids' => array_map('intval', explode(' ', env('ADMIN_USER_IDS'))),
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
