@@ -9,8 +9,8 @@ use Guzzle;
 class SendApprovalDiscordMessage
 {
     const COLORS = [
-        12264744,
-        1338170,
+        0x66CCFF,
+        0xCCEEFF,
     ];
 
     /**
