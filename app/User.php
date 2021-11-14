@@ -10,6 +10,7 @@ class User extends Authenticatable
         'catch',
         'isAmbassador',
         'isModder',
+        'isNat',
         'isNominator',
         'mania',
         'osu',
