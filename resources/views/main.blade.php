@@ -72,6 +72,10 @@
             })
         </script>
 
+        <script>
+            var osuBaseUrl = '{{ config('app.osu_base_url') }}';
+        </script>
+
         <script src='{{ asset('/js/app.js') }}'></script>
     </body>
 </html>

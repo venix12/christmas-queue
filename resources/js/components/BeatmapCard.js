@@ -125,7 +125,7 @@ class BeatmapCard extends Component {
                 onClose={this.closeModal}
                 bgImg={`https://assets.ppy.sh/beatmaps/${beatmap_id}/covers/cover.jpg`}
                 header={
-                    <a class="beatmap-card__badge round-text text-left" href={`https://osu.ppy.sh/s/${beatmap_id}`}>
+                    <a class="beatmap-card__badge round-text text-left" href={`${osuBaseUrl}/s/${beatmap_id}`}>
                         {metadata} <br />
                         <small>mapped by {creator}</small>
                     </a>
@@ -189,7 +189,7 @@ class BeatmapCard extends Component {
                     backgroundImage: `url(https://assets.ppy.sh/beatmaps/${beatmap_id}/covers/cover.jpg)`
                 }}
                 >
-                    <a class="beatmap-card__badge" href={`https://osu.ppy.sh/s/${beatmap_id}`}>
+                    <a class="beatmap-card__badge" href={`${osuBaseUrl}/s/${beatmap_id}`}>
                         {metadata} <br />
                         <small>mapped by {creator}</small> <br />
                     </a> <br />
