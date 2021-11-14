@@ -21,14 +21,14 @@ class SendApprovalDiscordMessage
      */
     public function handle(MapsetApproved $event)
     {
-        if (env('DISCORD_WEBHOOK_URL') === null) {
+        if (config('app.discord_webhook_url') === null) {
             return;
         }
 
         $color = Cache::get('discord-color', 0);
         $mapset = $event->mapset;
 
-        Guzzle::post(env('DISCORD_WEBHOOK_URL'), [
+        Guzzle::post(config('app.discord_webhook_url'), [
             'json' => [
                 'embeds' => [[
                     'title' => ':white_check_mark: Beatmapset approved',

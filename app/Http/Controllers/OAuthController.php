@@ -16,7 +16,7 @@ class OAuthController extends Controller
         $request->session()->put('state', $state = Str::random(40));
 
         $query = http_build_query([
-            'client_id' => env('OSU_API_CLIENT_ID'),
+            'client_id' => config('app.osu_api.client_id'),
             'redirect_uri' => route('oauth-callback'),
             'response_type' => 'code',
             'scope' => '',
@@ -38,8 +38,8 @@ class OAuthController extends Controller
             $response = Guzzle::post(config('app.osu_base_url').'/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
-                    'client_id' => env('OSU_API_CLIENT_ID'),
-                    'client_secret' => env('OSU_API_CLIENT_SECRET'),
+                    'client_id' => config('app.osu_api.client_id'),
+                    'client_secret' => config('app.osu_api.client_secret'),
                     'redirect_uri' => route('oauth-callback'),
                     'code' => $request->code,
                 ],
