@@ -59,14 +59,14 @@ class OAuthController extends Controller
 
         $userApi = json_decode((string) $userData->getBody(), true);
 
-        $groupIds = array_column($userApi['groups'], 'id');
-        $isNat = in_array(7, $groupIds, true);
+        $groupIdentifiers = array_column($userApi['groups'], 'identifier');
+        $isNat = in_array('nat', $groupIdentifiers, true);
 
         $user = User::firstOrNew(['osu_id' => $userApi['id']]);
         $user
             ->fill([
                 'isNat' => $isNat,
-                'isNominator' => $isNat || in_array(28, $groupIds, true) || in_array(32, $groupIds, true),
+                'isNominator' => $isNat || in_array('bng', $groupIdentifiers, true) || in_array('bng_limited', $groupIdentifiers, true),
                 'username' => $userApi['username'],
             ])
             ->save();
