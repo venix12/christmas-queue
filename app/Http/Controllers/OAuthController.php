@@ -96,4 +96,11 @@ class OAuthController extends Controller
 
         return redirect('/');
     }
+
+    public function logout()
+    {
+        auth()->logout(auth()->user());
+
+        return redirect()->back();
+    }
 }
