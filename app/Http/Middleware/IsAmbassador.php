@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
 use Closure;
 
 class IsAmbassador
@@ -16,11 +15,14 @@ class IsAmbassador
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->isAmbassador)
-        {
-            return $next($request);
+        if (!auth()->check()) {
+            abort(401);
         }
 
-        return redirect('/');
+        if (!auth()->user()->isAmbassador && !auth()->user()->isAdmin()) {
+            abort(403);
+        }
+
+        return $next($request);
     }
 }

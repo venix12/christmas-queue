@@ -2,6 +2,19 @@
 
 return [
 
+    'osu_base_url' => env('OSU_BASE_URL', 'https://osu.ppy.sh'),
+
+    'osu_api' => [
+        'client_id' => env('OSU_API_CLIENT_ID'),
+        'client_secret' => env('OSU_API_CLIENT_SECRET'),
+    ],
+
+    'osu_legacy_api' => [
+        'key' => env('OSU_LEGACY_API_KEY'),
+    ],
+
+    'discord_webhook_url' => env('DISCORD_WEBHOOK_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
