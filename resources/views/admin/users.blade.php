@@ -3,8 +3,6 @@
 ])
 
 @php
-    $admins = [654108, 1541323, 5999631];
-
     $add = 'Add to the';
     $rm = 'Remove from the';
 @endphp
@@ -24,7 +22,7 @@
                 <div class="user-listing__card">
                     <div>
                         <img class="user-listing__avatar" src="https://a.ppy.sh/{{$user->osu_id}}">
-                        <a href="https://osu.ppy.sh/u/{{$user->osu_id}}" class="user-listing__el user-listing__el--link">{{$user->username}}</a>
+                        <a href="{{ config('app.osu_base_url') }}/users/{{$user->osu_id}}" class="user-listing__el user-listing__el--link">{{$user->username}}</a>
 
                         {!! $user->isAmbassador ? usergroup_badge('ambassador') : '' !!}
                         {!! $user->isModder ? usergroup_badge('modder') : '' !!}
@@ -74,7 +72,7 @@
                             </button>
                         </form>
 
-                        @if(in_array(Auth::user()->osu_id, $admins))
+                        @if (auth()->user()->isAdmin())
                             <form action={{ route('add_usergroup') }} method="POST">
                                 @csrf
 

@@ -18,7 +18,7 @@
             <div>
                 <div class="navigation-profile__username">logged in as
                     <span class="url-clean">
-                        <a href="https://osu.ppy.sh/users/{{ Auth::user()->osu_id }}">
+                        <a href="{{ config('app.osu_base_url') }}/users/{{ Auth::user()->osu_id }}">
                             {{ Auth::user()->username }}
                         </a>
                     </span>

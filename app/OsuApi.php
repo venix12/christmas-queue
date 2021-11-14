@@ -32,7 +32,7 @@ class OsuApi
         Cache::forever(self::RATE_KEY, Carbon::now()->addMilliseconds(1000 * self::RATE_LIMIT));
 
         $query['k'] = $this->apiKey;
-        $response = Guzzle::get('https://osu.ppy.sh/api/' . $resource, ['query' => $query]);
+        $response = Guzzle::get(config('app.osu_base_url').'/api/'.$resource, ['query' => $query]);
 
         switch ($response->getStatusCode()) {
             case 200:

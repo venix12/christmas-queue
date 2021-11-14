@@ -2,6 +2,8 @@
 
 return [
 
+    'osu_base_url' => env('OSU_BASE_URL', 'https://osu.ppy.sh'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

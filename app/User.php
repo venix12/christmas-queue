@@ -68,16 +68,9 @@ class User extends Authenticatable
         return $gamemodes;
     }
 
-    public function isAmbassador() {
-        return $this->isAmbassador;
-    }
-
-    public function isNominator() {
-        return $this->isNominator;
-    }
-
-    public function isModder() {
-        return $this->isModder;
+    public function isAdmin()
+    {
+        return in_array($this->osu_id, config('auth.admin_user_ids'), true);
     }
 
     public function mods() {

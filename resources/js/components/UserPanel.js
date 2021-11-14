@@ -34,7 +34,7 @@ class UserPanel extends Component {
                 <div className="user-listing__card">
                     <div>
                         <img className="user-listing__avatar" src={`https://a.ppy.sh/${user.osu_id}`} />
-                        <a href={`https://osu.ppy.sh/u/${user.osu_id}`} class="user-listing__el user-listing__el--link">{user.username}</a>
+                        <a href={`${osuBaseUrl}/users/${user.osu_id}`} class="user-listing__el user-listing__el--link">{user.username}</a>
 
                         {loaded === true && groups.map(group => {
                             return <span className="user-listing__el">{usergroupBadge(group)}</span>

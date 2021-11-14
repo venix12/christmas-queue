@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Event;
 use App\User;
-use Auth;
 use App\Http\Controllers\Controller;
 use App\Mapset;
 use Illuminate\Http\Request;
@@ -13,7 +12,6 @@ class ManageUsersController extends Controller
 {
     public function addUsergroup(Request $request)
     {
-        $admins = [654108, 1541323, 5999631];
         $groups = [0, 1, 2];
         $groupNames = ['Modders', 'Nominators', 'Ambassadors'];
 
@@ -41,8 +39,7 @@ class ManageUsersController extends Controller
                 break;
         }
 
-        if($usergroup === 'isAmbassador' && !in_array(Auth::user()->osu_id, $admins))
-        {
+        if ($usergroup === 'isAmbassador' && !auth()->user()->isAdmin()) {
             return redirect()->back()
                 ->with('error', 'You are not permitted to change this usergroup!');
         }
