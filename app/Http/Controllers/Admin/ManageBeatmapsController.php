@@ -65,7 +65,7 @@ class ManageBeatmapsController extends Controller
             $bbcode .= "$mode!\n[list=1]\n";
 
             foreach ($mapsForMode as $set) {
-                $bbcode .= "[*][url=https://osu.ppy.sh/beatmapsets/$set->beatmapset_osu_id]$set->beatmapset_artist - $set->beatmapset_title[/url] ([url=https://osu.ppy.sh/users/$set->osu_user_id]$set->beatmapset_creator[/url])";
+                $bbcode .= "[*][url=".config('app.osu_base_url')."/beatmapsets/$set->beatmapset_osu_id]$set->beatmapset_artist - $set->beatmapset_title[/url] ([url=".config('app.osu_base_url')."/users/$set->osu_user_id]$set->beatmapset_creator[/url])";
 
                 switch ($set->ranked_status) {
                     case 'ranked':

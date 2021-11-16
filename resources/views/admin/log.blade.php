@@ -18,7 +18,7 @@
                     <div>
                         <div>
                             <img class="user-listing__avatar" src="https://a.ppy.sh/{{$event->user->osu_id}}">
-                            <a href="https://osu.ppy.sh/u/{{$event->user->osu_id}}" class="user-listing__el user-listing__el--link">{{$event->user->username}}</a>
+                            <a href="{{ config('app.osu_base_url') }}/users/{{$event->user->osu_id}}" class="user-listing__el user-listing__el--link">{{$event->user->username}}</a>
                             <span class="user-listing__el user-listing__el--content">
                                 {{$event->action}}
                             </span>

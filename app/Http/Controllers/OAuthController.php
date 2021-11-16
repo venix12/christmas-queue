@@ -22,7 +22,7 @@ class OAuthController extends Controller
             'scope' => '',
             'state' => $state,
         ]);
-        return redirect('http://osu.ppy.sh/oauth/authorize?'.$query);
+        return redirect(config('app.osu_base_url').'/oauth/authorize?'.$query);
     }
 
     public function getUserData(Request $request)
@@ -35,7 +35,7 @@ class OAuthController extends Controller
         }
 
         try {
-            $response = Guzzle::post('http://osu.ppy.sh/oauth/token', [
+            $response = Guzzle::post(config('app.osu_base_url').'/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
                     'client_id' => env('OSU_API_CLIENT_ID'),
@@ -52,7 +52,7 @@ class OAuthController extends Controller
         $data = json_decode((string) $response->getBody(), true);
         $token = $data['access_token'];
 
-        $userData = Guzzle::get('https://osu.ppy.sh/api/v2/me', [
+        $userData = Guzzle::get(config('app.osu_base_url').'/api/v2/me', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token,

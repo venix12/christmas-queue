@@ -32,7 +32,7 @@ class SendApprovalDiscordMessage
             'json' => [
                 'embeds' => [[
                     'title' => ':white_check_mark: Beatmapset approved',
-                    'description' => "**[$mapset->beatmapset_artist - $mapset->beatmapset_title](https://osu.ppy.sh/beatmapsets/$mapset->beatmapset_osu_id)**\nmapped by [$mapset->beatmapset_creator](https://osu.ppy.sh/users/$mapset->osu_user_id)",
+                    'description' => "**[$mapset->beatmapset_artist - $mapset->beatmapset_title](".config('app.osu_base_url')."/beatmapsets/$mapset->beatmapset_osu_id)**\nmapped by [$mapset->beatmapset_creator](".config('app.osu_base_url')."/users/$mapset->osu_user_id)",
                     'color' => self::COLORS[$color],
                     'thumbnail' => [
                         'url' => 'https://b.ppy.sh/thumb/' . $mapset->beatmapset_osu_id . 'l.jpg',
