@@ -10,7 +10,7 @@
     ])
 
     <div class="section section--3">
-        Once again this year,  the Christmas Queue continues for its tenth year of operation, a tradition that continues to spread the joy and wonders of the winter. Like before, in order to make this a great success again, the Christmas Queue is in need of motivated individuals to help push things forward. This year, we will make at least one beatmap pack about the newly ranked beatmaps that will be released just before Christmas.
+        Once again this year, the Beatmap Nominator group is bringing back the best modding queue around for its 11th year, a tradition that continues to spread the joy and wonders of the winter. Like before, in order to make this a great success again, the Christmas Queue is in need of motivated individuals to help push things forward.
         <br><br>
         Join us on <a href="https://discord.gg/782TTSN" style="text-decoration: none !important">Discord</a>!
         <br><br>

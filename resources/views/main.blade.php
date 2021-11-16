@@ -20,7 +20,7 @@
     <body class="d-flex flex-column">
         @include('components._navbar', [
             'routes' => ['home', 'beatmaps', 'users'],
-            'title' => 'Christmas Queue 2020',
+            'title' => 'Christmas Queue 2021',
         ])
 
         <main class="py-4">
