@@ -13,17 +13,12 @@
 
 Route::get('/', 'BeatmapController@index')->name('home');
 
-Route::get('/users', function() {
-    return view('users');
-})->name('users');
+Route::get('/users', 'UsersController@index')->name('users');
 
 Route::get('/beatmaps', 'BeatmapController@beatmaps')->name('beatmaps');
 
 Route::get('/login', 'OAuthController@getToken')->name('login');
-Route::get('/logout', function() {
-    Auth::logout(Auth::user());
-    return redirect()->back();
-})->name('logout');
+Route::get('/logout', 'OAuthController@logout')->name('logout');
 
 Route::group(['middleware' => 'is_ambassador', 'namespace' => 'Admin'], function() {
     Route::get('/admin-beatmaps', 'ManageBeatmapsController@index')->name('admin.beatmaps');
