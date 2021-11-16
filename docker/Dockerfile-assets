@@ -1,0 +1,7 @@
+FROM node:16-slim
+
+RUN npm install -g npm
+
+WORKDIR /srv/christmas-queue
+
+CMD npm install && npm run watch
