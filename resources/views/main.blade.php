@@ -29,7 +29,7 @@
                     @yield('content')
 
                     @auth
-                        @if (Auth::user()->isAmbassador())
+                        @if (auth()->user()->isAmbassador || auth()->user()->isAdmin())
                             <div class="section section--1 section--small d-inline-flex">
                                 <div class="navigation-bar__el navigation-bar__el--home">
                                     <a href="{{ route('admin.log') }}">log</a>
@@ -61,6 +61,12 @@
 
         <script class="current-user">
             var currentUser = {!! Auth::check() ? json_encode(Auth::user()) : '{}' !!}
+
+            @if (auth()->check() && auth()->user()->isAdmin())
+                currentUser.isAmbassador = true;
+                currentUser.isModder = true;
+                currentUser.isNominator = true;
+            @endif
 
             $('.current-user').remove();
         </script>
