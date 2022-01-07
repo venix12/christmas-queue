@@ -9,7 +9,7 @@ use Guzzle;
 
 class OsuApi
 {
-    const RATE_LIMIT = 0.1; // in seconds
+    const RATE_LIMIT = 0.5; // in seconds
     const RATE_KEY = 'osu-api-rate';
 
     private $apiKey;
